@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "257567030202",
+    "project_id": "smartpillbox-e7722",
+    "storage_bucket": "smartpillbox-e7722.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257567030202:android:f3508b038bb1570adc3b83",
+        "android_client_info": {
+          "package_name": "com.optic.Smartpillbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257567030202-0nfj7dvn9v2ronconhg1mphdma9537gq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.optic.Smartpillbox",
+            "certificate_hash": "ad2fdfc56e678c4e809e32284c841a8f862d6bb6"
+          }
+        },
+        {
+          "client_id": "257567030202-ocql0mq2888uloo8anq8u0k3tkjpiobd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHMWFHvyNET9GPPjR2IozhIFvnmR511K8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257567030202-ocql0mq2888uloo8anq8u0k3tkjpiobd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
