@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Bundle bundle = getIntent().getExtras();
         setSupportActionBar(mToolbar);
-        char tipoUsuario = bundle.getChar("tipoUsuario");
+        char tipoUsuario = bundle.getChar("tipo");
         switch (tipoUsuario){
             case 'u': getSupportActionBar().setTitle("Usuario");
             mLyParentesco.setVisibility(View.GONE);

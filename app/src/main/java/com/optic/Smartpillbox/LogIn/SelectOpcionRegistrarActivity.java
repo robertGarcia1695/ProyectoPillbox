@@ -42,12 +42,12 @@ public class SelectOpcionRegistrarActivity extends AppCompatActivity {
     }
     public void GoToUsuario(){
         Intent intent = new Intent(SelectOpcionRegistrarActivity.this, RegisterActivity.class)
-                .putExtra("tipoUsuario",'u');
+                .putExtra("tipo",'u');
         startActivity(intent);
     }
     public void GoToApoyoUsuario(){
         Intent intent = new Intent(SelectOpcionRegistrarActivity.this, RegisterActivity.class)
-                .putExtra("tipoUsuario",'a');
+                .putExtra("tipo",'a');
         startActivity(intent);
     }
 
