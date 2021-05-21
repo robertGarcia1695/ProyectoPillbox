@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorred"
-    tools:context=".OptionApoyoActivity">
+    android:background="@color/colorred">
 
     <include layout="@layout/action_bar_tollback"/>
     <LinearLayout
@@ -25,37 +24,34 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hola Usuario de apoyo Selecciona una opción"
+            android:layout_margin="40dp"
+            android:text="Hola! Seleccione que tipo de usuario desea crear:"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
-            android:layout_margin="40dp"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnGoToLogin"
+            android:id="@+id/btnGoToUsuario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/rounded_button"
-            android:text="YA TENGO CUENTA"
-            android:backgroundTint="@color/colorBlueLight"
-            android:textColor="@color/colorWhite"
-            android:layout_marginRight="30dp"/>
-
-        <Button
-            android:id="@+id/btnGoToRegister"
-            android:layout_width="match_parent"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="@color/colorWhite"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/colorBlueLight"
+            android:text="USUARIO"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btnGoToApoyoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:text="REGISTARME AHORA" />
-
-
-
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/colorWhite"
+            android:text="USUARIO DE APOYO" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

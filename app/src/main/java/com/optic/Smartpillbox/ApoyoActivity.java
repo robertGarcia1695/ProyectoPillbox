@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.optic.Smartpillbox.LogIn.CredencialesActivity;
+
 public class ApoyoActivity extends AppCompatActivity {
 
     Toolbar mToolbar;

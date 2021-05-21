@@ -1,4 +1,4 @@
-package com.optic.Smartpillbox;
+package com.optic.Smartpillbox.LogIn;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,59 +9,54 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.optic.Smartpillbox.LogIn.CredencialesActivity;
-import com.optic.Smartpillbox.LogIn.RegisterActivity;
+import com.optic.Smartpillbox.R;
 
-
-public class SelectOptionAuthActivity extends AppCompatActivity {
+public class SelectOpcionRegistrarActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
-    Button mButtonGoToLogin;
-    Button mButtonGoToRegister;
+    Button mButtonGoToUsuario;
+    Button mButtonGoToApoyoUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_option_auth);
+        setContentView(R.layout.activity_select_opcion_registrar);
         mToolbar = findViewById(R.id.toolbar);
+        mButtonGoToUsuario = findViewById(R.id.btnGoToUsuario);
+        mButtonGoToApoyoUsuario = findViewById(R.id.btnGoToApoyoUsuario);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Seleccionar Opción");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mButtonGoToLogin =findViewById(R.id.btnGoToUsuario);
-        mButtonGoToLogin.setOnClickListener(new View.OnClickListener() {
+        mButtonGoToUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                goToLogin();
+            public void onClick(View v) {
+                GoToUsuario();
             }
         });
-
-        mButtonGoToRegister = findViewById(R.id.btnGoToApoyoUsuario);
-        mButtonGoToRegister.setOnClickListener(new View.OnClickListener() {
+        mButtonGoToApoyoUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                goToRegister();
+            public void onClick(View v) {
+                GoToApoyoUsuario();
             }
         });
     }
-
-   public void goToLogin(){
-        Intent intent = new Intent(SelectOptionAuthActivity.this, CredencialesActivity.class);
-        startActivity(intent);
-   }
-
-    public void goToRegister(){
-        Intent intent = new Intent(SelectOptionAuthActivity.this, RegisterActivity.class);
+    public void GoToUsuario(){
+        Intent intent = new Intent(SelectOpcionRegistrarActivity.this, RegisterActivity.class)
+                .putExtra("tipoUsuario",'u');
         startActivity(intent);
     }
+    public void GoToApoyoUsuario(){
+        Intent intent = new Intent(SelectOpcionRegistrarActivity.this, RegisterActivity.class)
+                .putExtra("tipoUsuario",'a');
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-
 }

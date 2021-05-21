@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.optic.Smartpillbox.LogIn.CredencialesActivity;
+import com.optic.Smartpillbox.LogIn.SelectOpcionRegistrarActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     Button mButtonIamPaciente;
@@ -16,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mButtonIamPaciente = findViewById(R.id.btnIamPaciente);
-        mButtonIamFamiliar = findViewById(R.id.btnIamFamiliar);
+        mButtonIamPaciente = findViewById(R.id.btnGoToLogin);
+        mButtonIamFamiliar = findViewById(R.id.btnGoToRegistrarse);
 
         //---creamos metodo para indicarle la funcionalidad que va ejecutar para el paciente
         mButtonIamPaciente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToSelectAuth();
+                goToLogIn();
             }
         });
 
@@ -36,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void goToSelectAuth() {
-        Intent intent = new Intent(MainActivity.this,SelectOptionAuthActivity.class);
+    private void goToLogIn() {
+        Intent intent = new Intent(MainActivity.this, CredencialesActivity.class);
         startActivity(intent);
     }
     private void goToSelectAuth2() {
-        Intent intent = new Intent(MainActivity.this, OptionApoyoActivity.class);
+        Intent intent = new Intent(MainActivity.this, SelectOpcionRegistrarActivity.class);
         startActivity(intent);
     }
 }
