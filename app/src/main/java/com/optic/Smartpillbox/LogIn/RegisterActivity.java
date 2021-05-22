@@ -1,10 +1,12 @@
 package com.optic.Smartpillbox.LogIn;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,7 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.optic.Smartpillbox.Model.Usuario;
 import com.optic.Smartpillbox.Model.UsuarioApoyo;
 import com.optic.Smartpillbox.R;
@@ -58,11 +65,14 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.lyParentesco)
     LinearLayout mLyParentesco;
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        mAuth = FirebaseAuth.getInstance();
         Bundle bundle = getIntent().getExtras();
         setSupportActionBar(mToolbar);
         char tipoUsuario = bundle.getChar("tipo");
@@ -87,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registrarUsuario(tipoUsuario);
-                goToOpcion();
+                //goToOpcion();
                 finish();
             }
         });
@@ -116,8 +126,9 @@ public class RegisterActivity extends AppCompatActivity {
                 usuarioMap.put("sexo",usuario.getSexo());
                 usuarioMap.put("isInfo",usuario.getInfo());
                 usuarioMap.put("isSpan",usuario.getSpan());
-                Toast.makeText(this,usuarioMap.toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,usuarioMap.toString(),Toast.LENGTH_LONG).show();
                 //Lo que sigue es para la base de datos ....
+                createUser(usuarioMap);
                 break;
             case 'a':
                 UsuarioApoyo usuarioApoyo = new UsuarioApoyo();
@@ -141,8 +152,9 @@ public class RegisterActivity extends AppCompatActivity {
                 usuarioApoyoMap.put("sexo",usuarioApoyo.getSexo());
                 usuarioApoyoMap.put("isInfo",usuarioApoyo.getInfo());
                 usuarioApoyoMap.put("isSpan",usuarioApoyo.getSpan());
-                Toast.makeText(this,usuarioApoyoMap.toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,usuarioApoyoMap.toString(),Toast.LENGTH_LONG).show();
                 //Lo que sigue es para la base de datos ....
+                createUser(usuarioApoyoMap);
                 break;
             default: Toast.makeText(this,"Error en detectar el tipo de usuario",Toast.LENGTH_LONG).show();
                 break;
@@ -152,6 +164,26 @@ public class RegisterActivity extends AppCompatActivity {
     public void goToOpcion(){
         Intent intent = new Intent(RegisterActivity.this, CredencialesActivity.class);
         startActivity(intent);
+    }
+    public void createUser(Map<String, Object> user){
+        //Toast.makeText(RegisterActivity.this,user.get("email").toString() + " " + user.get("password").toString(),Toast.LENGTH_LONG).show();
+        mAuth.createUserWithEmailAndPassword(user.get("email").toString(), user.get("password").toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("regStatus", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("regStatus", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
