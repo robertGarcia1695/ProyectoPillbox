@@ -9,6 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.optic.Smartpillbox.FirebaseService.FireStoreService;
+import com.optic.Smartpillbox.MainActivity;
+import com.optic.Smartpillbox.MenuActivity;
 import com.optic.Smartpillbox.R;
 
 public class SelectOpcionRegistrarActivity extends AppCompatActivity {
@@ -16,11 +20,13 @@ public class SelectOpcionRegistrarActivity extends AppCompatActivity {
     Toolbar mToolbar;
     Button mButtonGoToUsuario;
     Button mButtonGoToApoyoUsuario;
+    private FireStoreService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_opcion_registrar);
+        service = new FireStoreService();
         mToolbar = findViewById(R.id.toolbar);
         mButtonGoToUsuario = findViewById(R.id.btnGoToUsuario);
         mButtonGoToApoyoUsuario = findViewById(R.id.btnGoToApoyoUsuario);
@@ -58,5 +64,16 @@ public class SelectOpcionRegistrarActivity extends AppCompatActivity {
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = service.mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(SelectOpcionRegistrarActivity.this, MenuActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

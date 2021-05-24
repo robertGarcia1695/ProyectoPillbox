@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mButtonIamPaciente = findViewById(R.id.btnGoToLogin);
         mButtonIamFamiliar = findViewById(R.id.btnGoToRegistrarse);
+        service = new FireStoreService();
 
         //---creamos metodo para indicarle la funcionalidad que va ejecutar para el paciente
         mButtonIamPaciente.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +57,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        service = new FireStoreService();
         FirebaseUser currentUser = service.mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 }

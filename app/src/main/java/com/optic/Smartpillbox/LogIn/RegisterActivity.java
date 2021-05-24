@@ -169,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     }
-    public void goToMenu(){
+    public void goToLogin(){
         Intent intent = new Intent(RegisterActivity.this, CredencialesActivity.class);
         finish();
         startActivity(intent);
@@ -184,7 +184,9 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("regStatus", "createUserWithEmail:success");
                             FirebaseUser user = service.mAuth.getCurrentUser();
-                            service.mAuth.signOut();
+                            if(user != null) {
+                                service.mAuth.signOut();
+                            }
                             userMap.remove("email");
                             userMap.remove("password");
                             userMap.put("userId",user.getUid());
@@ -202,7 +204,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             Log.w("regStatus", "Error adding document", e);
                                         }
                                     });
-                            goToMenu();
+                            goToLogin();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("regStatus", "createUserWithEmail:failure", task.getException());
