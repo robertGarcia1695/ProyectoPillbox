@@ -7,85 +7,98 @@ android:layout_height="match_parent"
 android:fitsSystemWindows="true"
 android:background="@color/colorred"
 tools:context=".MenuActivity">
-    <include layout="@layout/action_bar_tollback"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
 
-    <ImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:src="@drawable/doc1"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"/>
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hola Usuario Selecciona una opción"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:layout_margin="40dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <include layout="@layout/action_bar_tollback"/>
 
-    <Button
-        android:id="@+id/btnGoToPerfil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:background="@drawable/rounded_button"
-        android:text="Perfil de Usuario"
-        android:backgroundTint="@color/colorBlueLight"
-        android:textColor="@color/colorWhite"
-        android:layout_marginRight="30dp"/>
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/doc1"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"/>
 
-    <Button
-        android:id="@+id/btnGoToPastillero"
-        android:layout_width="match_parent"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/colorWhite"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Pastillero Virtual" />
-    <Button
-        android:id="@+id/btnGoToSintomas"
-        android:layout_width="match_parent"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/colorWhite"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Agenda Virtual" />
-    <Button
-        android:id="@+id/btnGoToOpcionales"
-        android:layout_width="match_parent"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/colorWhite"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Servicios opcionales" />
-    <Button
-        android:id="@+id/btnGoToHistoricos"
-        android:layout_width="match_parent"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/colorWhite"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Historico de Sintomas" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hola Usuario Selecciona una opción"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="40dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
+            <Button
+                android:id="@+id/btnGoToPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/rounded_button"
+                android:text="Perfil de Usuario"
+                android:backgroundTint="@color/colorBlueLight"
+                android:textColor="@color/colorWhite"
+                android:layout_marginRight="30dp"/>
 
+            <Button
+                android:id="@+id/btnGoToPastillero"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Pastillero Virtual" />
+            <Button
+                android:id="@+id/btnGoToSintomas"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Agenda Virtual" />
+            <Button
+                android:id="@+id/btnGoToOpcionales"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Servicios opcionales" />
+            <Button
+                android:id="@+id/btnGoToHistoricos"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Historico de Sintomas" />
+            <Button
+                android:id="@+id/btnSignout"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Cerrar Session" />
+        </LinearLayout>
 
+    </ScrollView>
 
-</LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

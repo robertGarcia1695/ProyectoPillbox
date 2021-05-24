@@ -17,11 +17,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.optic.Smartpillbox.FirebaseService.FireStoreService;
+import com.optic.Smartpillbox.MenuActivity;
 import com.optic.Smartpillbox.Model.Usuario;
 import com.optic.Smartpillbox.Model.UsuarioApoyo;
 import com.optic.Smartpillbox.R;
@@ -64,15 +70,19 @@ public class RegisterActivity extends AppCompatActivity {
     LinearLayout mLyEnfermedad;
     @BindView(R.id.lyParentesco)
     LinearLayout mLyParentesco;
+    private FireStoreService service;
 
-    private FirebaseAuth mAuth;
+    /*private FirebaseAuth mAuth;
+    FirebaseFirestore db;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        mAuth = FirebaseAuth.getInstance();
+        /*mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();*/
+        service = new FireStoreService();
         Bundle bundle = getIntent().getExtras();
         setSupportActionBar(mToolbar);
         char tipoUsuario = bundle.getChar("tipo");
@@ -97,8 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registrarUsuario(tipoUsuario);
-                //goToOpcion();
-                finish();
             }
         });
     }
@@ -161,20 +169,40 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     }
-    public void goToOpcion(){
+    public void goToMenu(){
         Intent intent = new Intent(RegisterActivity.this, CredencialesActivity.class);
+        finish();
         startActivity(intent);
     }
-    public void createUser(Map<String, Object> user){
+    public void createUser(Map<String, Object> userMap){
         //Toast.makeText(RegisterActivity.this,user.get("email").toString() + " " + user.get("password").toString(),Toast.LENGTH_LONG).show();
-        mAuth.createUserWithEmailAndPassword(user.get("email").toString(), user.get("password").toString())
+        service.mAuth.createUserWithEmailAndPassword(userMap.get("email").toString(), userMap.get("password").toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("regStatus", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUser user = service.mAuth.getCurrentUser();
+                            service.mAuth.signOut();
+                            userMap.remove("email");
+                            userMap.remove("password");
+                            userMap.put("userId",user.getUid());
+                            service.infoUsuario()
+                                    .add(userMap)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Log.d("regStatus", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("regStatus", "Error adding document", e);
+                                        }
+                                    });
+                            goToMenu();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("regStatus", "createUserWithEmail:failure", task.getException());
@@ -183,7 +211,6 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -191,7 +218,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
