@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LogIn.SelectOpcionRegistrarActivity"></activity>
+        <activity android:name=".LogIn.ValidarPastillera"></activity>
+        <activity android:name=".LogIn.SelectOpcionRegistrarActivity" />
         <activity android:name=".ServicesOptionActivity" />
         <activity android:name=".PerfilActivity" />
         <activity android:name=".listPastilleroActivity" />

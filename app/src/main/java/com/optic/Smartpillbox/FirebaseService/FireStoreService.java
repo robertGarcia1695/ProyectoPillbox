@@ -19,8 +19,13 @@ public class FireStoreService {
         fileStorage = FirebaseStorage.getInstance();
     }
 
-    public CollectionReference infoUsuario(){
-        CollectionReference dato = db.collection("infoUsuarios");
+    public CollectionReference perfil_usuarios(){
+        CollectionReference dato = db.collection("PERFIL_USUARIOS");
         return dato;
     }
+    public CollectionReference num_serie_pastilleras(){
+        CollectionReference dato = db.collection("NUM_SERIE_PASTILLERAS");
+        return dato;
+    }
+
 }

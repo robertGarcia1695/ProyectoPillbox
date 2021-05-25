@@ -1,9 +1,12 @@
 package com.optic.Smartpillbox.Model;
 
+import javax.annotation.Nullable;
+
 public class Usuario {
     private String nom;
     private String email;
     private String password;
+    @Nullable
     private Integer edad;
     private String serie;
     private String enfermedad;
