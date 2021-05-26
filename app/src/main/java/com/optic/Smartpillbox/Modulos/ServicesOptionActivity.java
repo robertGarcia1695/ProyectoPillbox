@@ -1,8 +1,10 @@
-package com.optic.Smartpillbox;
+package com.optic.Smartpillbox.Modulos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.optic.Smartpillbox.R;
 
 public class ServicesOptionActivity extends AppCompatActivity {
 

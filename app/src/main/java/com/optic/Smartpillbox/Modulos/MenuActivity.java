@@ -1,4 +1,4 @@
-package com.optic.Smartpillbox;
+package com.optic.Smartpillbox.Modulos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.LogIn.ValidarPastilleraActivity;
+import com.optic.Smartpillbox.R;
 import com.optic.Smartpillbox.Services.CheckNetworkStatus;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
@@ -27,6 +28,9 @@ public class MenuActivity extends AppCompatActivity {
 
     @BindView(R.id.btnSignout)
     Button mBtnSignOut;
+    @BindView(R.id.btnGoToPerfil)
+    Button mBtnGoToPerfil;
+
     private FireStoreService service;
     private CheckNetworkStatus networkStatus;
     @Override
@@ -57,6 +61,13 @@ public class MenuActivity extends AppCompatActivity {
                                     Intent intent = new Intent(MenuActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finishAffinity();
+                                }
+                            });
+                            mBtnGoToPerfil.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                         }

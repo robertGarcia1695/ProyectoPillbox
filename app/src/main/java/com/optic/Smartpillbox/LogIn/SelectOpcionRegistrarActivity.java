@@ -11,8 +11,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
-import com.optic.Smartpillbox.MainActivity;
-import com.optic.Smartpillbox.MenuActivity;
+import com.optic.Smartpillbox.Modulos.MenuActivity;
 import com.optic.Smartpillbox.R;
 
 public class SelectOpcionRegistrarActivity extends AppCompatActivity {

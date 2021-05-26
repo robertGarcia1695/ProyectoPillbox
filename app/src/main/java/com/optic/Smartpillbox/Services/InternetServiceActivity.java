@@ -8,8 +8,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.ProgressBar;
 
-import com.optic.Smartpillbox.MainActivity;
-import com.optic.Smartpillbox.MenuActivity;
+import com.optic.Smartpillbox.Modulos.MainActivity;
 import com.optic.Smartpillbox.R;
 
 import butterknife.BindView;

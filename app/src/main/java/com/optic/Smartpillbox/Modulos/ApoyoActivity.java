@@ -1,4 +1,4 @@
-package com.optic.Smartpillbox;
+package com.optic.Smartpillbox.Modulos;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.optic.Smartpillbox.LogIn.CredencialesActivity;
+import com.optic.Smartpillbox.R;
 
 public class ApoyoActivity extends AppCompatActivity {
 

@@ -19,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
-import com.optic.Smartpillbox.MenuActivity;
+import com.optic.Smartpillbox.Modulos.MenuActivity;
 import com.optic.Smartpillbox.R;
 import com.optic.Smartpillbox.Services.CheckNetworkStatus;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;

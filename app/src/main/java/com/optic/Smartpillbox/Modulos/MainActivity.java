@@ -1,4 +1,4 @@
-package com.optic.Smartpillbox;
+package com.optic.Smartpillbox.Modulos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,12 +7,12 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.LogIn.CredencialesActivity;
 import com.optic.Smartpillbox.LogIn.SelectOpcionRegistrarActivity;
+import com.optic.Smartpillbox.R;
 import com.optic.Smartpillbox.Services.CheckNetworkStatus;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;
 

@@ -14,22 +14,22 @@
         <activity android:name=".Services.InternetServiceActivity"></activity>
         <activity android:name=".LogIn.ValidarPastilleraActivity" />
         <activity android:name=".LogIn.SelectOpcionRegistrarActivity" />
-        <activity android:name=".ServicesOptionActivity" />
-        <activity android:name=".PerfilActivity" />
-        <activity android:name=".listPastilleroActivity" />
-        <activity android:name=".RegisterPastilleroActivity" />
-        <activity android:name=".MenuActivity" />
+        <activity android:name=".Modulos.ServicesOptionActivity" />
+        <activity android:name=".Modulos.PerfilActivity" />
+        <activity android:name=".Modulos.listPastilleroActivity" />
+        <activity android:name=".Modulos.RegisterPastilleroActivity" />
+        <activity android:name=".Modulos.MenuActivity" />
         <activity android:name=".LogIn.CredencialesActivity" />
-        <activity android:name=".ApoyoActivity" />
+        <activity android:name=".Modulos.ApoyoActivity" />
         <activity
-            android:name=".RegisterUapoyoActivity"
+            android:name=".Modulos.RegisterUapoyoActivity"
             android:label="@string/title_activity_register_uapoyo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LogIn.RegisterActivity" />
         <activity
-            android:name=".SelectOptionAuthActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:name=".Modulos.SelectOptionAuthActivity"
+            android:parentActivityName=".Modulos.MainActivity" />
+        <activity android:name=".Modulos.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
