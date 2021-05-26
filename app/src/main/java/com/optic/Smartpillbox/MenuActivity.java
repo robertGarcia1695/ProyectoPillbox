@@ -4,19 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
-import com.optic.Smartpillbox.LogIn.CredencialesActivity;
-import com.optic.Smartpillbox.LogIn.ValidarPastillera;
+import com.optic.Smartpillbox.LogIn.ValidarPastilleraActivity;
+import com.optic.Smartpillbox.Services.CheckNetworkStatus;
+import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
 import java.util.Map;
 
@@ -28,10 +28,12 @@ public class MenuActivity extends AppCompatActivity {
     @BindView(R.id.btnSignout)
     Button mBtnSignOut;
     private FireStoreService service;
+    private CheckNetworkStatus networkStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        networkStatus = new CheckNetworkStatus((ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE));
         service = new FireStoreService();
         ButterKnife.bind(this);
         verficarPastillero(service.mAuth.getCurrentUser());
@@ -44,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
                     try {
                         Map<String, Object> userProfile = task.getResult().getDocuments().get(0).getData();
                         if(userProfile.get("serie").equals(null)){
-                            Intent intent = new Intent(MenuActivity.this, ValidarPastillera.class);
+                            Intent intent = new Intent(MenuActivity.this, ValidarPastilleraActivity.class);
                             startActivity(intent);
                             finishAffinity();
                         }else{
@@ -59,13 +61,22 @@ public class MenuActivity extends AppCompatActivity {
                             });
                         }
                     }catch (NullPointerException n){
-                        Intent intent = new Intent(MenuActivity.this, ValidarPastillera.class);
+                        Intent intent = new Intent(MenuActivity.this, ValidarPastilleraActivity.class);
                         startActivity(intent);
                         finishAffinity();
                     }
                 }
             }
         });
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (networkStatus.verifyConnectivity()) {
+
+        } else if (!networkStatus.verifyConnectivity()) {
+            startActivity(new Intent(this, InternetServiceActivity.class));
+        }
     }
 
 }

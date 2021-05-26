@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/colorred"
-    tools:context=".LogIn.ValidarPastillera">
+    tools:context=".LogIn.ValidarPastilleraActivity">
     <include
         layout="@layout/action_bar_tollback"
         android:layout_width="match_parent"

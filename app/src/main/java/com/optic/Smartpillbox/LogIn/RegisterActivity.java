@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,21 +17,18 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.Model.Usuario;
 import com.optic.Smartpillbox.Model.UsuarioApoyo;
 import com.optic.Smartpillbox.R;
+import com.optic.Smartpillbox.Services.CheckNetworkStatus;
+import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,12 +68,14 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.lyParentesco)
     LinearLayout mLyParentesco;
     private FireStoreService service;
+    private CheckNetworkStatus networkStatus;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        networkStatus = new CheckNetworkStatus((ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE));
         ButterKnife.bind(this);
         service = new FireStoreService();
         Bundle bundle = getIntent().getExtras();
@@ -101,7 +101,11 @@ public class RegisterActivity extends AppCompatActivity {
         mButtonGoToRegisterUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registrarUsuario(tipoUsuario);
+                if(networkStatus.verifyConnectivity()){
+                    registrarUsuario(tipoUsuario);
+                }else{
+                    Toast.makeText(RegisterActivity.this,"No esta conectado al internet. Verfique su conexión.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -182,7 +186,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
     public void goToLogin(){
-        Intent intent = new Intent(RegisterActivity.this, ValidarPastillera.class);
+        Intent intent = new Intent(RegisterActivity.this, ValidarPastilleraActivity.class);
         startActivity(intent);
         finishAffinity();
     }
@@ -286,5 +290,13 @@ public class RegisterActivity extends AppCompatActivity {
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void onStart() {
+        super.onStart();
+        if (networkStatus.verifyConnectivity()) {
+
+        } else if (!networkStatus.verifyConnectivity()) {
+            startActivity(new Intent(this, InternetServiceActivity.class));
+        }
     }
 }

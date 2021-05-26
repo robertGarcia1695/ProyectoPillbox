@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +21,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.MenuActivity;
 import com.optic.Smartpillbox.R;
+import com.optic.Smartpillbox.Services.CheckNetworkStatus;
+import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
 import java.util.Map;
 
@@ -27,8 +30,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CredencialesActivity extends AppCompatActivity {
-
-
 
     @BindView(R.id.TextInputEmail)
     TextInputEditText mTxtEmail;
@@ -40,11 +41,13 @@ public class CredencialesActivity extends AppCompatActivity {
     Toolbar mToolbar;
 
     private FireStoreService service;
+    private CheckNetworkStatus networkStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credenciales);
         ButterKnife.bind(this);
+        networkStatus = new CheckNetworkStatus((ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE));
         service = new FireStoreService();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Log In");
@@ -52,7 +55,11 @@ public class CredencialesActivity extends AppCompatActivity {
         mButtonGoToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LogIn();
+                if(networkStatus.verifyConnectivity()){
+                    LogIn();
+                }else {
+                    Toast.makeText(CredencialesActivity.this,"No esta conectado al internet. Verfique su conexión.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -64,7 +71,7 @@ public class CredencialesActivity extends AppCompatActivity {
                     try {
                         Map<String, Object> userProfile = task.getResult().getDocuments().get(0).getData();
                         if(userProfile.get("serie").equals(null)){
-                            Intent intent = new Intent(CredencialesActivity.this, ValidarPastillera.class);
+                            Intent intent = new Intent(CredencialesActivity.this, ValidarPastilleraActivity.class);
                             startActivity(intent);
                             finishAffinity();
                         }else{
@@ -73,7 +80,7 @@ public class CredencialesActivity extends AppCompatActivity {
                             finishAffinity();
                         }
                     }catch (NullPointerException n){
-                        Intent intent = new Intent(CredencialesActivity.this, ValidarPastillera.class);
+                        Intent intent = new Intent(CredencialesActivity.this, ValidarPastilleraActivity.class);
                         startActivity(intent);
                         finishAffinity();
                     }
@@ -114,6 +121,11 @@ public class CredencialesActivity extends AppCompatActivity {
             Intent intent = new Intent(CredencialesActivity.this, MenuActivity.class);
             startActivity(intent);
             finish();
+        }
+        if (networkStatus.verifyConnectivity()) {
+
+        } else if (!networkStatus.verifyConnectivity()) {
+            startActivity(new Intent(this, InternetServiceActivity.class));
         }
     }
 }

@@ -3,28 +3,31 @@ package com.optic.Smartpillbox;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.LogIn.CredencialesActivity;
 import com.optic.Smartpillbox.LogIn.SelectOpcionRegistrarActivity;
+import com.optic.Smartpillbox.Services.CheckNetworkStatus;
+import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     Button mButtonIamPaciente;
     Button mButtonIamFamiliar;
     private FireStoreService service;
+    private CheckNetworkStatus networkStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        networkStatus = new CheckNetworkStatus((ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE));
         mButtonIamPaciente = findViewById(R.id.btnGoToLogin);
         mButtonIamFamiliar = findViewById(R.id.btnGoToRegistrarse);
         service = new FireStoreService();
@@ -63,5 +66,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        if(networkStatus.verifyConnectivity()){
+
+        }else if(!networkStatus.verifyConnectivity()){
+            startActivity(new Intent(this, InternetServiceActivity.class));
+        }
     }
+
 }
