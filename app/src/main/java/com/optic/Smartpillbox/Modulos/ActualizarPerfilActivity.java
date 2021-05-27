@@ -6,18 +6,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.R;
 
@@ -30,8 +27,6 @@ import butterknife.ButterKnife;
 public class ActualizarPerfilActivity extends AppCompatActivity {
     @BindView(R.id.txtNom)
     TextInputEditText mTxtNom;
-    @BindView(R.id.txtEmail)
-    TextInputEditText mTxtEmail;
     @BindView(R.id.txtEdad)
     TextInputEditText mTxtEdad;
     @BindView(R.id.spinnerSexo)
@@ -50,7 +45,7 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         service = new FireStoreService();
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Log In");
+        getSupportActionBar().setTitle("Actualizar Perfil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
         String[] sexo = new String[3];
@@ -64,7 +59,6 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     mSpinnerSexo.setAdapter(adapter);
                     mTxtNom.setText(task.getResult().getString("nom"));
-                    mTxtEmail.setText(service.mAuth.getCurrentUser().getEmail());
                     mTxtEdad.setText(task.getResult().getLong("edad").toString());
                     switch (task.getResult().getString("sexo")){
                         case "Masculino": mSpinnerSexo.setSelection(0);break;
@@ -85,31 +79,22 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
 
     }
     public void ActualizarInformacion(String id){
-        service.mAuth.getCurrentUser().updateEmail(mTxtEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        Map<String,Object> usuarioMap = new HashMap<>();
+        usuarioMap.put("nom",mTxtNom.getText().toString());
+        usuarioMap.put("edad",Integer.parseInt(mTxtEdad.getText().toString()));
+        usuarioMap.put("sexo", mSpinnerSexo.getSelectedItem().toString());
+        service.perfil_usuarios().document(id).update(usuarioMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
+            public void onComplete(@NonNull  Task<Void> task) {
                 if(task.isSuccessful()){
-                    Map<String,Object> usuarioMap = new HashMap<String,Object>();
-                    usuarioMap.put("nom",mTxtNom.getText().toString());
-                    usuarioMap.put("edad",Integer.parseInt(mTxtEdad.getText().toString()));
-                    usuarioMap.put("sexo", mSpinnerSexo.getSelectedItem().toString());
-                    service.perfil_usuarios().document(id).update(usuarioMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull  Task<Void> task) {
-                            if(task.isSuccessful()){
-                                startActivity(new Intent(ActualizarPerfilActivity.this,MenuActivity.class));
-                                finish();
-                            }
-                        }
-                    });
-                }else{
-                    mTxtEmail.setError("Intente con otro correo");
+                    startActivity(new Intent(ActualizarPerfilActivity.this,MenuActivity.class));
+                    finish();
                 }
             }
         });
     }
     public boolean validarDatos(){
-        Boolean[] validacion = new Boolean[3];
+        Boolean[] validacion = new Boolean[2];
         boolean confirmacion = false;
         for(int i = 0; i < validacion.length; i++){
             validacion[i] = false;
@@ -120,16 +105,10 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
             validacion[0] = true;
         }
 
-        if(mTxtEmail.getText().toString().equals("") || !mTxtEmail.getText().toString().contains("@")){
-            mTxtEmail.setError("Debe ingresar un correo valido.");
-        }else{
-            validacion[1] = true;
-        }
-
         if(mTxtEdad.getText().toString().equals("")){
             mTxtEdad.setError("Debe ingresar su edad.");
         }else{
-            validacion[2] = true;
+            validacion[1] = true;
         }
 
         for(int i = 0; i < validacion.length;i++){
@@ -141,5 +120,13 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
             }
         }
         return confirmacion;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

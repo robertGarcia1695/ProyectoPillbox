@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,8 +18,8 @@ import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.Model.Usuario;
 import com.optic.Smartpillbox.Model.UsuarioApoyo;
 import com.optic.Smartpillbox.R;
+import androidx.appcompat.widget.Toolbar;
 
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +38,8 @@ public class PerfilActivity extends AppCompatActivity {
     TextView mTxtDesTipUsuario;
     @BindView(R.id.btnGoToActualizarPerfil)
     Button mBtnGoToActualizarPerfil;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private FireStoreService service;
     private FirebaseUser user;
@@ -50,6 +53,9 @@ public class PerfilActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         service = new FireStoreService();
         user = service.mAuth.getCurrentUser();
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Perfil");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         eventPerfil = service.perfil_usuarios().whereEqualTo("userId",user.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -97,5 +103,13 @@ public class PerfilActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         eventPerfil.remove();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

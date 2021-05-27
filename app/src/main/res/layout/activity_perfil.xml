@@ -6,13 +6,17 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".Modulos.PerfilActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <include layout="@layout/action_bar_tollback" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -27,11 +31,34 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/icon_user" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
                         android:text="Nombre:"
                         android:textColor="@color/colorBlueLight"
                         android:textSize="15sp" />
@@ -102,14 +129,15 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <Button
                 android:id="@+id/btnGoToActualizarPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ACTUALIZAR INFORMACIÓN"
+                android:layout_margin="30dp"
                 android:background="@drawable/rounded_button"
                 android:backgroundTint="@color/colorred"
-                android:layout_margin="30dp"
+                android:text="ACTUALIZAR INFORMACIÓN"
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
     </ScrollView>
