@@ -1,108 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:layout_margin="10dp"
-    >
-
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".Modulos.PerfilActivity">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-
-        <ImageView
-            android:id="@+id/imageViewPerfilUser"
-            android:layout_width="150dp"
-            android:layout_height="250dp"
-            android:src="@drawable/doc"
-            android:scaleType="centerCrop" />
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre:"
-                android:textColor="@color/colorBlueLight"
-                android:textSize="15sp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp" />
-
-            <TextView
-                android:id="@+id/textViewName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Miguel Lopez"
-                android:textSize="16sp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:maxLines="1"/>
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Nombre:"
+                        android:textColor="@color/colorBlueLight"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtNom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Correo:"
+                        android:textColor="@color/colorBlueLight"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Edad:"
+                        android:textColor="@color/colorBlueLight"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtEdad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text=""
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/lblTipoUsuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Padezco de :"
+                        android:textColor="@color/colorBlueLight"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtDesTipUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <Button
+                android:id="@+id/btnGoToActualizarPerfil"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Correo:"
-                android:textColor="@color/colorBlueLight"
-                android:textSize="15sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp" />
-
-            <TextView
-                android:id="@+id/textViewEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lopez@gmail.com"
-                android:textSize="16sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:maxLines="1"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edad:"
-                android:textColor="@color/colorBlueLight"
-                android:textSize="15sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp" />
-
-            <TextView
-                android:id="@+id/textViewdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="45"
-                android:textSize="20sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:maxLines="1"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Padezco de :"
-                android:textColor="@color/colorBlueLight"
-                android:textSize="15sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp" />
-
-            <TextView
-                android:id="@+id/textViewCalification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="hipertensión"
-                android:textSize="16sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:maxLines="1"/>
-
+                android:text="ACTUALIZAR INFORMACIÓN"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorred"
+                android:layout_margin="30dp"
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

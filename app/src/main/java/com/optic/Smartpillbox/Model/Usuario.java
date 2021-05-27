@@ -1,8 +1,10 @@
 package com.optic.Smartpillbox.Model;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+
 import javax.annotation.Nullable;
 
-public class Usuario {
+public class Usuario{
     private String nom;
     private String email;
     private String password;

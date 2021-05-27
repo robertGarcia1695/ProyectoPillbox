@@ -75,6 +75,8 @@ public class MenuActivity extends AppCompatActivity {
                         Intent intent = new Intent(MenuActivity.this, ValidarPastilleraActivity.class);
                         startActivity(intent);
                         finishAffinity();
+                    }catch (IndexOutOfBoundsException i){
+
                     }
                 }
             }
