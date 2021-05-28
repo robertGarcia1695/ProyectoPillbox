@@ -6,146 +6,150 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".Modulos.RegisterPastilleroActivity">
-
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/doc22"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/icon_email" />
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre de la pastilla"
-                    android:inputType="textEmailAddress">
-
-                </com.google.android.material.textfield.TextInputEditText>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/icon_password" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputCantidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Cantidad de pastillas"
-                    android:inputType="textPassword">
-
-                </com.google.android.material.textfield.TextInputEditText>
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/icon_password" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Horario de toma"
-                    android:inputType="textPassword">
-
-                </com.google.android.material.textfield.TextInputEditText>
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-        <Switch
-            android:layout_marginLeft="50dp"
-            android:id="@+id/switch1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ALARMA" />
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="241dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="Tomas Diarias" />
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="bottom">
-
-            <Button
-                android:id="@+id/btnRegistrar"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="INGRESAR"
-                android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/colorred"
-                android:layout_margin="30dp"
-                android:textColor="@color/colorWhite" />
+                android:background="@color/colorred2"
+                app:theme="@style/ToolbarTheme" />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/doc22"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/icon_password" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtNomPastilla"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombre de la pastilla">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/icon_password" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtCantidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Cantidad de pastillas"
+                        android:inputType="number"
+                        android:digits="0123456789">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/lyHoraToma"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/icon_password" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:id="@+id/txtHoraToma"
+                        android:hint="Horario de toma">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <Switch
+                android:layout_marginLeft="50dp"
+                android:id="@+id/swtAlarma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ALARMA" />
+
+            <CheckBox
+                android:id="@+id/chkDiario"
+                android:layout_width="241dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="Tomas Diarias" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="bottom">
+
+                <Button
+                    android:id="@+id/btnAgregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="@color/colorred"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
         </LinearLayout>
 
-
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

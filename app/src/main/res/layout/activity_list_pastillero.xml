@@ -1,110 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="10dp"
-        android:fitsSystemWindows="true"
-        >
+        android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorred2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/ToolbarTheme" />
 
-        <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listPastillera"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/lyAgregar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyAgregar"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <Button
+            android:id="@+id/btnAgregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-
-            <ImageView
-                android:id="@+id/imageViewHistoryBooking"
-                android:layout_width="150dp"
-                android:layout_height="250dp"
-                android:src="@drawable/pastilla"
-                android:scaleType="centerCrop" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre:"
-                    android:textColor="@color/colorBlueLight"
-                    android:textSize="15sp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="15dp" />
-
-                <TextView
-                    android:id="@+id/textViewName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Apronax"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:maxLines="1"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cantidad:"
-                    android:textColor="@color/colorBlueLight"
-                    android:textSize="15sp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp" />
-
-                <TextView
-                    android:id="@+id/textViewAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="15"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:maxLines="1"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Horario:"
-                    android:textColor="@color/colorBlueLight"
-                    android:textSize="15sp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp" />
-
-                <TextView
-                    android:id="@+id/textViewHours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Diario"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:maxLines="1"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Toma de Pastilla:"
-                    android:textColor="@color/colorBlueLight"
-                    android:textSize="15sp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp" />
-
-                <TextView
-                    android:id="@+id/textViewAlert"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NO"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:maxLines="1"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+            android:text="Agregar"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/colorred"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

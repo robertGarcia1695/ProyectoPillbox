@@ -30,6 +30,8 @@ public class MenuActivity extends AppCompatActivity {
     Button mBtnSignOut;
     @BindView(R.id.btnGoToPerfil)
     Button mBtnGoToPerfil;
+    @BindView(R.id.btnGoToPastillero)
+    Button mBtnGoToPastillero;
 
     private FireStoreService service;
     private CheckNetworkStatus networkStatus;
@@ -69,6 +71,10 @@ public class MenuActivity extends AppCompatActivity {
                                     Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
                                     startActivity(intent);
                                 }
+                            });
+                            mBtnGoToPastillero.setOnClickListener(v -> {
+                                Intent intent = new Intent(MenuActivity.this,ListPastilleroActivity.class);
+                                startActivity(intent);
                             });
                         }
                     }catch (NullPointerException n){

@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class FireStoreService {
     public FirebaseAuth mAuth;
-    public FirebaseFirestore db;
-    public FirebaseStorage fileStorage;
+    private FirebaseFirestore db;
+    private FirebaseStorage fileStorage;
 
     public FireStoreService(){
         mAuth = FirebaseAuth.getInstance();
@@ -25,6 +25,10 @@ public class FireStoreService {
     }
     public CollectionReference num_serie_pastilleras(){
         CollectionReference dato = db.collection("NUM_SERIE_PASTILLERAS");
+        return dato;
+    }
+    public CollectionReference lista_pastillera(){
+        CollectionReference dato = db.collection("LISTA_PASTILLERA");
         return dato;
     }
 

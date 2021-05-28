@@ -17,7 +17,7 @@
         <activity android:name=".LogIn.SelectOpcionRegistrarActivity" />
         <activity android:name=".Modulos.ServicesOptionActivity" />
         <activity android:name=".Modulos.PerfilActivity" />
-        <activity android:name=".Modulos.listPastilleroActivity" />
+        <activity android:name=".Modulos.ListPastilleroActivity" />
         <activity android:name=".Modulos.RegisterPastilleroActivity" />
         <activity android:name=".Modulos.MenuActivity" />
         <activity android:name=".LogIn.CredencialesActivity" />
