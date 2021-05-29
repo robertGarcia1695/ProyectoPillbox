@@ -1,5 +1,6 @@
 package com.optic.Smartpillbox.Modulos;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -12,9 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TimePicker;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
+import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.R;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -37,12 +45,14 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
     @BindView(R.id.btnAgregar)
     Button mBtnAgregar;
 
+    private FireStoreService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_pastillero);
         ButterKnife.bind(this);
+        service = new FireStoreService();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Pastillero Virtual");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -62,10 +72,24 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
             timePickerDialog.show();
         });
         mBtnAgregar.setOnClickListener(v ->{
-            validarDatos();
+            if(validarDatos()){
+                Map<String,Object> pastilla = new HashMap<>();
+                pastilla.put("nom",mTxtNomPastilla.getText().toString());
+                pastilla.put("cantidad",Integer.parseInt(mTxtCantidad.getText().toString()));
+                pastilla.put("hora",mTxtHoraToma.getText().toString());
+                pastilla.put("isAlarma",mSwtAlarma.isChecked());
+                pastilla.put("isDiario",mChkDiario.isChecked());
+                pastilla.put("userId",service.mAuth.getUid());
+                service.pastillero_virtual().add(pastilla).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        finish();
+                    }
+                });
+            }
         });
-
     }
+
     public boolean validarDatos(){
         Boolean[] validacion = new Boolean[2];
         boolean confirmacion = false;

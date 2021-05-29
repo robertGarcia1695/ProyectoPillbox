@@ -27,8 +27,8 @@ public class FireStoreService {
         CollectionReference dato = db.collection("NUM_SERIE_PASTILLERAS");
         return dato;
     }
-    public CollectionReference lista_pastillera(){
-        CollectionReference dato = db.collection("LISTA_PASTILLERA");
+    public CollectionReference pastillero_virtual(){
+        CollectionReference dato = db.collection("PASTILLERO_VIRTUAL");
         return dato;
     }
 

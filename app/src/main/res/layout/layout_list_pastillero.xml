@@ -31,7 +31,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textViewName"
+                android:id="@+id/txtNomPastilla"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -50,7 +50,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textViewAmount"
+                android:id="@+id/txtCantidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -69,7 +69,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textViewHours"
+                android:id="@+id/txtHoraToma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -88,7 +88,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textViewAlert"
+                android:id="@+id/txtToma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
