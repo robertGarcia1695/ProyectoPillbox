@@ -73,7 +73,8 @@ public class MenuActivity extends AppCompatActivity {
                                 }
                             });
                             mBtnGoToPastillero.setOnClickListener(v -> {
-                                Intent intent = new Intent(MenuActivity.this,ListPastilleroActivity.class);
+                                Intent intent = new Intent(MenuActivity.this,ListPastilleroActivity.class)
+                                        .putExtra("serie",userProfile.get("serie").toString());
                                 startActivity(intent);
                             });
                         }

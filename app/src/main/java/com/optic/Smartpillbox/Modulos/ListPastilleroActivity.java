@@ -36,12 +36,13 @@ public class ListPastilleroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_pastillero);
+        Bundle bundle = getIntent().getExtras();
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Pastillero Virtual");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         service = new FireStoreService();
-        Query query = service.pastillero_virtual().whereEqualTo("userId",service.mAuth.getUid());
+        Query query = service.pastillero_virtual().whereEqualTo("serie",bundle.getString("serie"));
         FirestoreRecyclerOptions<Pastilla> options = new FirestoreRecyclerOptions.Builder<Pastilla>()
                 .setQuery(query,Pastilla.class).build();
         adapter = new PastillaAdapter(options);
@@ -49,7 +50,7 @@ public class ListPastilleroActivity extends AppCompatActivity {
         mListPastillera.setLayoutManager(new LinearLayoutManager(this));
         mListPastillera.setAdapter(adapter);
         mBtnAgregar.setOnClickListener(v-> {
-            startActivity(new Intent(ListPastilleroActivity.this,RegisterPastilleroActivity.class));
+            startActivity(new Intent(ListPastilleroActivity.this,RegisterPastilleroActivity.class).putExtra("serie",bundle.getString("serie")));
         });
     }
     @Override

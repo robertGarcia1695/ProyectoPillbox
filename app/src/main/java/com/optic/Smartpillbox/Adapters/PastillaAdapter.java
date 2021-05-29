@@ -1,6 +1,5 @@
 package com.optic.Smartpillbox.Adapters;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.textfield.TextInputEditText;
 import com.optic.Smartpillbox.Model.Pastilla;
 import com.optic.Smartpillbox.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, PastillaAdapter.PastillaHolder> {
 

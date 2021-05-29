@@ -53,6 +53,7 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_pastillero);
         ButterKnife.bind(this);
         service = new FireStoreService();
+        Bundle bundle = getIntent().getExtras();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Pastillero Virtual");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -79,7 +80,7 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                 pastilla.put("hora",mTxtHoraToma.getText().toString());
                 pastilla.put("isAlarma",mSwtAlarma.isChecked());
                 pastilla.put("isDiario",mChkDiario.isChecked());
-                pastilla.put("userId",service.mAuth.getUid());
+                pastilla.put("serie",bundle.getString("serie"));
                 service.pastillero_virtual().add(pastilla).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
