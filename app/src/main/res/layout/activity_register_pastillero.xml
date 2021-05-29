@@ -117,19 +117,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-            <Switch
-                android:layout_marginLeft="50dp"
-                android:id="@+id/swtAlarma"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ALARMA" />
 
-            <CheckBox
-                android:id="@+id/chkDiario"
-                android:layout_width="241dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:text="Tomas Diarias" />
 
             <LinearLayout
                 android:layout_width="match_parent"

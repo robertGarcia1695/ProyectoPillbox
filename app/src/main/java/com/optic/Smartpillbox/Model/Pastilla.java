@@ -4,8 +4,6 @@ public class Pastilla {
     private String nom;
     private Integer cantidad;
     private String hora;
-    private boolean isAlarma;
-    private boolean isDiario;
 
     public String getNom() {
         return nom;
@@ -31,19 +29,4 @@ public class Pastilla {
         this.hora = hora;
     }
 
-    public boolean isAlarma() {
-        return isAlarma;
-    }
-
-    public void setAlarma(boolean alarma) {
-        isAlarma = alarma;
-    }
-
-    public boolean isDiario() {
-        return isDiario;
-    }
-
-    public void setDiario(boolean diario) {
-        isDiario = diario;
-    }
 }

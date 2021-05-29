@@ -38,10 +38,6 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
     LinearLayout mLyHoraToma;
     @BindView(R.id.txtHoraToma)
     TextInputEditText mTxtHoraToma;
-    @BindView(R.id.swtAlarma)
-    Switch mSwtAlarma;
-    @BindView(R.id.chkDiario)
-    CheckBox mChkDiario;
     @BindView(R.id.btnAgregar)
     Button mBtnAgregar;
 
@@ -78,8 +74,6 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                 pastilla.put("nom",mTxtNomPastilla.getText().toString());
                 pastilla.put("cantidad",Integer.parseInt(mTxtCantidad.getText().toString()));
                 pastilla.put("hora",mTxtHoraToma.getText().toString());
-                pastilla.put("isAlarma",mSwtAlarma.isChecked());
-                pastilla.put("isDiario",mChkDiario.isChecked());
                 pastilla.put("serie",bundle.getString("serie"));
                 service.pastillero_virtual().add(pastilla).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
