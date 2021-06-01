@@ -3,19 +3,29 @@ package com.optic.Smartpillbox.Modulos;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.LogIn.ValidarPastilleraActivity;
 import com.optic.Smartpillbox.R;
+import com.optic.Smartpillbox.Services.BroadcastReciever;
 import com.optic.Smartpillbox.Services.CheckNetworkStatus;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
@@ -43,6 +53,29 @@ public class MenuActivity extends AppCompatActivity {
         service = new FireStoreService();
         ButterKnife.bind(this);
         verficarPastillero(service.mAuth.getCurrentUser());
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            Toast.makeText(this,"Starting Alarm",Toast.LENGTH_LONG).show();
+            CharSequence name = "Example Alarm";
+            String description = "This is an example alarm";
+            int importance_level = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("Alarm1", name, importance_level);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+            Intent intent = new Intent(this, BroadcastReciever.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+            long timeAtStartTime = System.currentTimeMillis();
+            long tenSecsInMillis = 1000 * 10;
+            alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtStartTime + tenSecsInMillis,pendingIntent);
+        }else{
+            Toast.makeText(this,"Can't activate alarm",Toast.LENGTH_LONG).show();
+        }
+
     }
     public void verficarPastillero(FirebaseUser user){
         service.perfil_usuarios().whereEqualTo("userId",user.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
