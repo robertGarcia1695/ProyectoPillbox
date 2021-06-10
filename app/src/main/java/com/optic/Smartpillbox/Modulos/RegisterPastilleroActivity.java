@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
 import com.optic.Smartpillbox.Model.Medicamento;
 import com.optic.Smartpillbox.R;
+import com.optic.Smartpillbox.Services.GeneralService;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -137,8 +138,8 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                             service.pastillero_virtual().add(pastilla).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
-                                    //final Intent intent = new Intent(RegisterPastilleroActivity.this, AlarmService.class);
-                                    //ServiceCaller(intent,pastilla.get("hora").toString());
+                                    final Intent intent = new Intent(RegisterPastilleroActivity.this, GeneralService.class);
+                                    ServiceCaller(intent,pastilla.get("hora").toString());
                                     finish();
                                 }
                             });
@@ -157,8 +158,8 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
 
         Integer alarmHour = Integer.parseInt(tiempo.substring(0,2));
         Integer alarmMinute = Integer.parseInt(tiempo.substring(3,5));
-        Toast.makeText(RegisterPastilleroActivity.this,alarmHour + "",Toast.LENGTH_SHORT).show();
-        Toast.makeText(RegisterPastilleroActivity.this,alarmMinute + "",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(RegisterPastilleroActivity.this,alarmHour + "",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(RegisterPastilleroActivity.this,alarmMinute + "",Toast.LENGTH_SHORT).show();
         intent.putExtra("alarmHour", alarmHour);
         intent.putExtra("alarmMinute", alarmMinute);
 
