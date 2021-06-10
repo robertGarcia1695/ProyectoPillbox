@@ -23,14 +23,19 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
+import com.optic.Smartpillbox.Model.Enfermedad;
 import com.optic.Smartpillbox.Model.Usuario;
 import com.optic.Smartpillbox.Model.UsuarioApoyo;
 import com.optic.Smartpillbox.R;
 import com.optic.Smartpillbox.Services.CheckNetworkStatus;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -52,8 +57,8 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputEditText mTxtPassword2;
     @BindView(R.id.txtEdad)
     TextInputEditText mTxtEdad;
-    @BindView(R.id.txtEnfermedad)
-    TextInputEditText mTxtEnfermedad;
+    @BindView(R.id.spinnerEnfermedad)
+    Spinner mSpinnerEnfermedad;
     @BindView(R.id.txtParentesco)
     TextInputEditText mTxtParentesco;
     @BindView(R.id.spinnerSexo)
@@ -92,22 +97,40 @@ public class RegisterActivity extends AppCompatActivity {
             break;
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String[] sexo = new String[3];
-        sexo[0] = "Masculino";
-        sexo[1] = "Femenino";
-        sexo[2] = "Otro";
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, sexo);
-        mSpinnerSexo.setAdapter(adapter);
-        mButtonGoToRegisterUser.setOnClickListener(new View.OnClickListener() {
+        service.lista_cardio().get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onClick(View view) {
-                if(networkStatus.verifyConnectivity()){
-                    registrarUsuario(tipoUsuario);
-                }else{
-                    Toast.makeText(RegisterActivity.this,"No esta conectado al internet. Verfique su conexión.",Toast.LENGTH_SHORT).show();
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    List<Enfermedad> enfermedads = new ArrayList<>();
+                    for(DocumentSnapshot e: task.getResult().getDocuments()){
+                        enfermedads.add(e.toObject(Enfermedad.class));
+                    }
+                    String[] enfNom = new String[enfermedads.size()];
+                    for(int i = 0; i < enfNom.length; i++){
+                        enfNom[i] = enfermedads.get(i).getNombre();
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_spinner_item, enfNom);
+                    mSpinnerEnfermedad.setAdapter(adapter);
+                    String[] sexo = new String[3];
+                    sexo[0] = "Masculino";
+                    sexo[1] = "Femenino";
+                    sexo[2] = "Otro";
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_spinner_item, sexo);
+                    mSpinnerSexo.setAdapter(adapter2);
+                    mButtonGoToRegisterUser.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(networkStatus.verifyConnectivity()){
+                                registrarUsuario(tipoUsuario);
+                            }else{
+                                Toast.makeText(RegisterActivity.this,"No esta conectado al internet. Verfique su conexión.",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
+
     }
     public void registrarUsuario(char tipoUsuario){
         Map<String,Object> userInfo = verficarTipoDeUsuario(tipoUsuario);
@@ -127,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }catch (NumberFormatException n){
                     usuario.setEdad(null);
                 }
-                usuario.setEnfermedad(mTxtEnfermedad.getText().toString());
+                usuario.setEnfermedad(mSpinnerEnfermedad.getSelectedItem().toString());
                 usuario.setSexo(mSpinnerSexo.getSelectedItem().toString());
                 usuario.setInfo(mCheckInfo.isChecked());
                 usuario.setSpan(mCheckSpan.isChecked());
@@ -258,8 +281,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
         switch (tipoUsuario){
             case 'u':
-                if(mTxtEnfermedad.getText().toString().equals("")){
-                    mTxtEnfermedad.setError("Debe ingresar la enfermedad que tiene.");
+                if(mSpinnerEnfermedad.getSelectedItem().toString().equals("")){
+                    //mTxtEnfermedad.setError("Debe ingresar la enfermedad que tiene.");
                 }else{
                     validacion[4] = true;
                 }

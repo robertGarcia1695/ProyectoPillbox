@@ -22,7 +22,14 @@ public class FireStoreService {
         fileStorage = FirebaseStorage.getInstance();
         rtdb = FirebaseDatabase.getInstance();
     }
-
+    public CollectionReference lista_cardio(){
+        CollectionReference dato = db.collection("LISTA_CARDIO");
+        return dato;
+    }
+    public CollectionReference lista_pastillas(){
+        CollectionReference dato = db.collection("LISTA_PASTILLAS");
+        return dato;
+    }
     public CollectionReference perfil_usuarios(){
         CollectionReference dato = db.collection("PERFIL_USUARIOS");
         return dato;

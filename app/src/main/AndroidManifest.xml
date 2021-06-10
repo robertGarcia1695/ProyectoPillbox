@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service android:name=".Services.GeneralService"/>
         <activity android:name=".Modulos.ActualizarPerfilActivity" />
         <activity android:name=".Services.InternetServiceActivity" />
         <activity android:name=".LogIn.ValidarPastilleraActivity" />

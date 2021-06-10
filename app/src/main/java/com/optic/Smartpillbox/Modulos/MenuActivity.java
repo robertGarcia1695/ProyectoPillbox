@@ -27,6 +27,7 @@ import com.optic.Smartpillbox.LogIn.ValidarPastilleraActivity;
 import com.optic.Smartpillbox.R;
 import com.optic.Smartpillbox.Services.BroadcastReciever;
 import com.optic.Smartpillbox.Services.CheckNetworkStatus;
+import com.optic.Smartpillbox.Services.GeneralService;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
 import java.util.Map;
@@ -54,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         verficarPastillero(service.mAuth.getCurrentUser());
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             Toast.makeText(this,"Starting Alarm",Toast.LENGTH_LONG).show();
             CharSequence name = "Example Alarm";
             String description = "This is an example alarm";
@@ -74,7 +75,7 @@ public class MenuActivity extends AppCompatActivity {
             alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtStartTime + tenSecsInMillis,pendingIntent);
         }else{
             Toast.makeText(this,"Can't activate alarm",Toast.LENGTH_LONG).show();
-        }
+        }*/
 
     }
     public void verficarPastillero(FirebaseUser user){
@@ -110,6 +111,9 @@ public class MenuActivity extends AppCompatActivity {
                                         .putExtra("serie",userProfile.get("serie").toString());
                                 startActivity(intent);
                             });
+                            //Inicializa el servicio
+                            /*Intent serviceStarter = new Intent(MenuActivity.this, GeneralService.class);
+                            startService(serviceStarter);*/
                         }
                     }catch (NullPointerException n){
                         Intent intent = new Intent(MenuActivity.this, ValidarPastilleraActivity.class);

@@ -40,27 +40,25 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                 // whenever data at this location is updated.
                 Object isLunes = dataSnapshot.child("Lunes").getValue();
                 Object isMartes = dataSnapshot.child("Martes").getValue();
-                if(isLunes.toString().equals("true")){
-                    holder.mTxtTomaLunes.setText("☹️");
+                if (isLunes.toString().equals("true")) {
+                    holder.mTxtTomaLunes.setText("❌");
                     holder.mTxtTomaLunes.setTextColor(Color.RED);
                     holder.mTxtTomaLunes.setTextSize(24);
-                }else{
-                    holder.mTxtTomaLunes.setText("\uD83D\uDE00");
+                } else {
+                    holder.mTxtTomaLunes.setText("✔️");
                     holder.mTxtTomaLunes.setTextColor(Color.GREEN);
                     holder.mTxtTomaLunes.setTextSize(24);
                 }
                 if(isMartes.toString().equals("true")){
-                    holder.mTxtTomaMartes.setText("☹️");
+                    holder.mTxtTomaMartes.setText("❌");
                     holder.mTxtTomaMartes.setTextColor(Color.RED);
                     holder.mTxtTomaMartes.setTextSize(24);
                 }else{
-                    holder.mTxtTomaMartes.setText("\uD83D\uDE00");
+                    holder.mTxtTomaMartes.setText("✔️");
                     holder.mTxtTomaMartes.setTextColor(Color.GREEN);
                     holder.mTxtTomaMartes.setTextSize(24);
                 }
-
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
             }

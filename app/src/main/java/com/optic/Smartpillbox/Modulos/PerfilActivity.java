@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
@@ -36,6 +37,8 @@ public class PerfilActivity extends AppCompatActivity {
     TextView mLblTipoUsuario;
     @BindView(R.id.txtDesTipUsuario)
     TextView mTxtDesTipUsuario;
+    @BindView(R.id.txtPersonasAsociadas)
+    TextView mTxtPersonasAsociadas;
     @BindView(R.id.btnGoToActualizarPerfil)
     Button mBtnGoToActualizarPerfil;
     @BindView(R.id.toolbar)
@@ -44,6 +47,7 @@ public class PerfilActivity extends AppCompatActivity {
     private FireStoreService service;
     private FirebaseUser user;
     private ListenerRegistration eventPerfil;
+    private ListenerRegistration eventAsociados;
 
 
     @Override
@@ -66,6 +70,16 @@ public class PerfilActivity extends AppCompatActivity {
                     UsuarioApoyo doc = value.getDocuments().get(0).toObject(UsuarioApoyo.class);
                     llenarCamposPerfil(doc,value.getDocuments().get(0).getId());
                 }
+                eventAsociados = service.perfil_usuarios().whereEqualTo("serie", value.getDocuments().get(0).getString("serie")).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        for(DocumentSnapshot d: value.getDocuments()){
+                            if(!d.getString("userId").equals(service.mAuth.getUid())) {
+                                mTxtPersonasAsociadas.append(d.getString("nom") + "\n");
+                            }
+                        }
+                    }
+                });
             }
         });
     }
@@ -103,6 +117,7 @@ public class PerfilActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         eventPerfil.remove();
+        eventAsociados.remove();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
