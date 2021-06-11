@@ -18,7 +18,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/pastilla" />
+                android:src="@drawable/pastilladetalle" />
 
             <LinearLayout
                 android:layout_width="match_parent"
