@@ -1,71 +1,20 @@
 package com.optic.Smartpillbox.Model;
 
+
+import java.util.ArrayList;
+
 public class Pastilla {
     private String nom;
     private Integer cantidad;
     private String hora;
-    private boolean isLunes;
-    private boolean isMartes;
-    private boolean isMiercoles;
-    private boolean isJueves;
-    private boolean isViernes;
-    private boolean isSabado;
-    private boolean isDomingo;
+    private ArrayList<Boolean> diasSemana;
 
-    public boolean isLunes() {
-        return isLunes;
+    public ArrayList<Boolean> getDiasSemana() {
+        return diasSemana;
     }
 
-    public void setLunes(boolean lunes) {
-        isLunes = lunes;
-    }
-
-    public boolean isMartes() {
-        return isMartes;
-    }
-
-    public void setMartes(boolean martes) {
-        isMartes = martes;
-    }
-
-    public boolean isMiercoles() {
-        return isMiercoles;
-    }
-
-    public void setMiercoles(boolean miercoles) {
-        isMiercoles = miercoles;
-    }
-
-    public boolean isJueves() {
-        return isJueves;
-    }
-
-    public void setJueves(boolean jueves) {
-        isJueves = jueves;
-    }
-
-    public boolean isViernes() {
-        return isViernes;
-    }
-
-    public void setViernes(boolean viernes) {
-        isViernes = viernes;
-    }
-
-    public boolean isSabado() {
-        return isSabado;
-    }
-
-    public void setSabado(boolean sabado) {
-        isSabado = sabado;
-    }
-
-    public boolean isDomingo() {
-        return isDomingo;
-    }
-
-    public void setDomingo(boolean domingo) {
-        isDomingo = domingo;
+    public void setDiasSemana(ArrayList<Boolean> diasSemana) {
+        this.diasSemana = diasSemana;
     }
 
     public String getNom() {

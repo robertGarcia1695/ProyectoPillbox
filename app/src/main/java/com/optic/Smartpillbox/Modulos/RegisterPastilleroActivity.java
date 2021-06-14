@@ -128,18 +128,20 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                             pastilla.put("cantidad",Integer.parseInt(mTxtCantidad.getText().toString()));
                             pastilla.put("hora",mTxtHoraToma.getText().toString());
                             pastilla.put("serie",bundle.getString("serie"));
-                            pastilla.put("isLunes",mChkLunes.isChecked());
-                            pastilla.put("isMartes",mChkMartes.isChecked());
-                            pastilla.put("isMiercoles",mChkMiercoles.isChecked());
-                            pastilla.put("isJueves",mChkJueves.isChecked());
-                            pastilla.put("isViernes",mChkViernes.isChecked());
-                            pastilla.put("isSabado",mChkSabado.isChecked());
-                            pastilla.put("isDomingo",mChkDomingo.isChecked());
+                            ArrayList<Boolean> dias = new ArrayList<>();
+                            dias.add(mChkLunes.isChecked());
+                            dias.add(mChkMartes.isChecked());
+                            dias.add(mChkMiercoles.isChecked());
+                            dias.add(mChkJueves.isChecked());
+                            dias.add(mChkViernes.isChecked());
+                            dias.add(mChkSabado.isChecked());
+                            dias.add(mChkDomingo.isChecked());
+                            pastilla.put("diasSemana", dias);
                             service.pastillero_virtual().add(pastilla).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
-                                    final Intent intent = new Intent(RegisterPastilleroActivity.this, GeneralService.class);
-                                    ServiceCaller(intent,pastilla.get("hora").toString());
+                                    /*final Intent intent = new Intent(RegisterPastilleroActivity.this, GeneralService.class);
+                                    ServiceCaller(intent,pastilla.get("hora").toString());*/
                                     finish();
                                 }
                             });

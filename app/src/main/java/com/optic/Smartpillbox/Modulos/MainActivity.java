@@ -14,6 +14,7 @@ import com.optic.Smartpillbox.LogIn.CredencialesActivity;
 import com.optic.Smartpillbox.LogIn.SelectOpcionRegistrarActivity;
 import com.optic.Smartpillbox.R;
 import com.optic.Smartpillbox.Services.CheckNetworkStatus;
+import com.optic.Smartpillbox.Services.GeneralService;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
 public class MainActivity extends AppCompatActivity {

@@ -3,6 +3,8 @@
     package="com.optic.Smartpillbox">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".Services.GeneralService"/>
+        <activity android:name=".Services.PillCheckActivity"></activity>
+        <activity android:name=".Services.AlarmAlertActivity" />
+
+        <service android:name=".Services.GeneralService" />
+
         <activity android:name=".Modulos.ActualizarPerfilActivity" />
         <activity android:name=".Services.InternetServiceActivity" />
         <activity android:name=".LogIn.ValidarPastilleraActivity" />
@@ -38,7 +44,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".Services.BroadcastReciever"/>
+
+        <receiver android:name=".Services.BroadcastReciever" />
     </application>
 
 </manifest>

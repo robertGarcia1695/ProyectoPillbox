@@ -112,8 +112,8 @@ public class MenuActivity extends AppCompatActivity {
                                 startActivity(intent);
                             });
                             //Inicializa el servicio
-                            /*Intent serviceStarter = new Intent(MenuActivity.this, GeneralService.class);
-                            startService(serviceStarter);*/
+                            Intent serviceStarter = new Intent(MenuActivity.this, GeneralService.class);
+                            startService(serviceStarter);
                         }
                     }catch (NullPointerException n){
                         Intent intent = new Intent(MenuActivity.this, ValidarPastilleraActivity.class);

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +44,8 @@ public class PerfilActivity extends AppCompatActivity {
     Button mBtnGoToActualizarPerfil;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.imgPerfil)
+    ImageView mImgPerfil;
 
     private FireStoreService service;
     private FirebaseUser user;
@@ -91,6 +94,7 @@ public class PerfilActivity extends AppCompatActivity {
             mTxtEdad.setText(usuario.getEdad().toString());
             mLblTipoUsuario.setText("Enfermedad: ");
             mTxtDesTipUsuario.setText(usuario.getEnfermedad());
+            mImgPerfil.setImageDrawable(getResources().getDrawable(R.drawable.fotoperfil));
             mBtnGoToActualizarPerfil.setOnClickListener(v ->  {
                 Intent intent = new Intent(PerfilActivity.this, ActualizarPerfilActivity.class)
                         .putExtra("id",id);
@@ -104,6 +108,7 @@ public class PerfilActivity extends AppCompatActivity {
             mTxtEdad.setText(usuario.getEdad().toString());
             mLblTipoUsuario.setText("Parentesco: ");
             mTxtDesTipUsuario.setText(usuario.getParentesco());
+            mImgPerfil.setImageDrawable(getResources().getDrawable(R.drawable.apoyo));
             mBtnGoToActualizarPerfil.setOnClickListener(v ->  {
                 Intent intent = new Intent(PerfilActivity.this, ActualizarPerfilActivity.class)
                         .putExtra("id",id);
