@@ -35,8 +35,8 @@ public class AlarmAlertActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ringtone.stop();
-                startService(new Intent(AlarmAlertActivity.this, GeneralService.class));
-                finish();
+                startActivity(new Intent(AlarmAlertActivity.this,MenuActivity.class));
+                finishAffinity();
             }
         });
     }

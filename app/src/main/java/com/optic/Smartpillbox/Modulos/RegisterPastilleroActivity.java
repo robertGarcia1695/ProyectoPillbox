@@ -129,13 +129,13 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                             pastilla.put("hora",mTxtHoraToma.getText().toString());
                             pastilla.put("serie",bundle.getString("serie"));
                             ArrayList<Boolean> dias = new ArrayList<>();
+                            dias.add(mChkDomingo.isChecked());
                             dias.add(mChkLunes.isChecked());
                             dias.add(mChkMartes.isChecked());
                             dias.add(mChkMiercoles.isChecked());
                             dias.add(mChkJueves.isChecked());
                             dias.add(mChkViernes.isChecked());
                             dias.add(mChkSabado.isChecked());
-                            dias.add(mChkDomingo.isChecked());
                             pastilla.put("diasSemana", dias);
                             service.pastillero_virtual().add(pastilla).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                 @Override
