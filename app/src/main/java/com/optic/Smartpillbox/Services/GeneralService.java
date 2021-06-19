@@ -58,7 +58,7 @@ public class GeneralService extends Service {
             public void run() {
                 checkAlarmPills();
             }
-        }, 0, 1000);
+        }, 200, 1000);
         return START_STICKY;
     }
     public void checkAlarmPills(){
@@ -108,10 +108,10 @@ public class GeneralService extends Service {
                                                 Calendar.getInstance().getTime().getMinutes() == alarmMinute
                                                 && pastilla.getDiasSemana().get(LocalDateTime.now().getDayOfWeek().getValue())
                                                 && diasSemanaIoT.get(LocalDateTime.now().getDayOfWeek().getValue())) {
-                                            t.cancel();
                                             Intent intent = new Intent(GeneralService.this, AlarmAlertActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
+                                            t.cancel();
                                         }
                                         if(!diasSemanaIoT.get(0) && !diasSemanaIoT.get(1) && !diasSemanaIoT.get(2) && !diasSemanaIoT.get(3) &&
                                                 !diasSemanaIoT.get(4) && !diasSemanaIoT.get(5) && !diasSemanaIoT.get(6)){

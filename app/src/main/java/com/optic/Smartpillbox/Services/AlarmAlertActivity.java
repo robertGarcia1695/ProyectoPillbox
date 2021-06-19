@@ -40,6 +40,13 @@ public class AlarmAlertActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ringtone.stop();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
