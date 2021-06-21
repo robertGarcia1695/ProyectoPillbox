@@ -42,8 +42,8 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
     Toolbar mToolbar;
     @BindView(R.id.spinnerNom)
     Spinner mSpinnerNom;
-    @BindView(R.id.txtCantidad)
-    TextInputEditText mTxtCantidad;
+    @BindView(R.id.spinnerCantidad)
+    Spinner mSpinnerCantidad;
     @BindView(R.id.lyHoraToma)
     LinearLayout mLyHoraToma;
     @BindView(R.id.txtHoraToma)
@@ -78,6 +78,12 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Pastillero Virtual");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mTxtHoraToma.setText("00:00");
+        String[] cantidad = new String[20];
+        for(int i = 0; i < cantidad.length; i++){
+            cantidad[i] = (i + 1) + "";
+        }
+        ArrayAdapter<String> adapterCantidad = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,cantidad);
+        mSpinnerCantidad.setAdapter(adapterCantidad);
         service.lista_pastillas().get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -90,7 +96,7 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                     for(int i = 0; i < medNom.length; i++){
                         medNom[i] = medicamentos.get(i).getNombre();
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterPastilleroActivity.this,android.R.layout.simple_spinner_item, medNom);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterPastilleroActivity.this,android.R.layout.simple_spinner_dropdown_item, medNom);
                     mSpinnerNom.setAdapter(adapter);
                     mLyHoraToma.setOnClickListener(v -> {
                         Calendar calendar = Calendar.getInstance();
@@ -125,7 +131,7 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                         if(validarDatos()){
                             Map<String,Object> pastilla = new HashMap<>();
                             pastilla.put("nom",mSpinnerNom.getSelectedItem().toString());
-                            pastilla.put("cantidad",Integer.parseInt(mTxtCantidad.getText().toString()));
+                            pastilla.put("cantidad",Integer.parseInt(mSpinnerCantidad.getSelectedItem().toString()));
                             pastilla.put("hora",mTxtHoraToma.getText().toString());
                             pastilla.put("serie",bundle.getString("serie"));
                             ArrayList<Boolean> dias = new ArrayList<>();
@@ -178,8 +184,8 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
         }else{
             validacion[0] = true;
         }
-        if(mTxtCantidad.getText().toString().equals("")){
-            mTxtCantidad.setError("Debe ingresar la cantidad.");
+        if(mSpinnerCantidad.getSelectedItem().toString().equals("")){
+
         }else{
             validacion[1] = true;
         }

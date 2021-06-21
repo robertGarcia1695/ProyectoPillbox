@@ -33,8 +33,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GeneralService extends Service {
-    //private Integer alarmHour;
-    //private Integer alarmMinute;
     private Timer t = new Timer();
     private FireStoreService service;
 
@@ -77,7 +75,6 @@ public class GeneralService extends Service {
                                         Pastilla pastilla = d.toObject(Pastilla.class);
                                         Integer alarmHour = Integer.parseInt(pastilla.getHora().substring(0, 2));
                                         Integer alarmMinute = Integer.parseInt(pastilla.getHora().substring(3, 5));
-                                        //boolean dayVerficacion = false;
                                         Object isLunes = dataSnapshot.child("Lunes").getValue();
                                         Object isMartes = dataSnapshot.child("Martes").getValue();
                                         Object isMiercoles = dataSnapshot.child("Miercoles").getValue();
@@ -95,15 +92,6 @@ public class GeneralService extends Service {
                                         diasSemanaIoT.add(Boolean.parseBoolean(isSabado.toString()));
                                         Log.d("dayOfWeek",LocalDateTime.now().getDayOfWeek().getValue() + "");
                                         Log.d("Loging_Data_Alarm", d.getId() + d.getString("nom"));
-                                                /*switch (LocalDateTime.now().getDayOfWeek().getValue()){
-                                                    case 0: if(pastilla.getDiasSemana().get(0)) dayVerficacion=true;break;// Domingo
-                                                    case 1: if(pastilla.getDiasSemana().get(1)) dayVerficacion=true;break;// Lunes
-                                                    case 2: if(pastilla.getDiasSemana().get(2)) dayVerficacion=true;break;// Martes
-                                                    case 3: if(pastilla.getDiasSemana().get(3)) dayVerficacion=true;break;// Miercoles
-                                                    case 4: if(pastilla.getDiasSemana().get(4)) dayVerficacion=true;break;// Jueves
-                                                    case 5: if(pastilla.getDiasSemana().get(5)) dayVerficacion=true;break;// Viernes
-                                                    case 6: if(pastilla.getDiasSemana().get(6)) dayVerficacion=true;break;// Sabado
-                                                }*/
                                         if (Calendar.getInstance().getTime().getHours() == alarmHour &&
                                                 Calendar.getInstance().getTime().getMinutes() == alarmMinute
                                                 && pastilla.getDiasSemana().get(LocalDateTime.now().getDayOfWeek().getValue())
@@ -126,10 +114,6 @@ public class GeneralService extends Service {
 
                                     }
                                 });
-
-                                    /*else {
-                                        ringtone.stop();
-                                    }*/
                             }
                         }
                     });

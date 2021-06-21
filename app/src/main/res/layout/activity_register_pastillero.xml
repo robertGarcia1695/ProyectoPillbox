@@ -31,20 +31,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="20dp">
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/icon_password" />
-
-                <Spinner
-                    android:id="@+id/spinnerNom"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre:"/>
+                    <Spinner
+                        android:id="@+id/spinnerNom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -53,15 +55,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad de toma por día:"/>
+                    <Spinner
+                        android:id="@+id/spinnerCantidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/icon_password" />
-
-                <com.google.android.material.textfield.TextInputLayout
+                </LinearLayout>
+                <!--<com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_height="wrap_content">
@@ -70,42 +79,43 @@
                         android:id="@+id/txtCantidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cantidad de pastillas"
+                        android:hint="Cantidad x día"
                         android:inputType="number"
-                        android:digits="0123456789">
+                        android:maxLength="1"
+                        android:digits="123456789">
 
                     </com.google.android.material.textfield.TextInputEditText>
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/lyHoraToma"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/icon_password" />
-
-                <com.google.android.material.textfield.TextInputLayout
+                android:layout_margin="20dp">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:id="@+id/txtHoraToma"
-                        android:hint="Horario de toma">
+                        android:text="Hora de toma:"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:id="@+id/txtHoraToma">
 
-                    </com.google.android.material.textfield.TextInputEditText>
+                        </com.google.android.material.textfield.TextInputEditText>
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
 
             </LinearLayout>
             <LinearLayout

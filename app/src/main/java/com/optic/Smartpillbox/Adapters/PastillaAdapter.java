@@ -26,6 +26,8 @@ import com.optic.Smartpillbox.Model.Pastilla;
 import com.optic.Smartpillbox.Modulos.MenuActivity;
 import com.optic.Smartpillbox.R;
 
+import java.util.ArrayList;
+
 
 public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, PastillaAdapter.PastillaHolder> {
 
@@ -161,6 +163,25 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                     holder.mTxtTomaDomingo.setTextColor(Color.BLACK);
                     holder.mTxtTomaDomingo.setTextSize(24);
                 }
+                int cantidadPastillas = 0;
+                int cantidadPastillasMaxima = 0;
+                ArrayList<Boolean> diasSemanaIoT = new ArrayList<>();
+                diasSemanaIoT.add(Boolean.parseBoolean(isDomingo.toString()));
+                diasSemanaIoT.add(Boolean.parseBoolean(isLunes.toString()));
+                diasSemanaIoT.add(Boolean.parseBoolean(isMartes.toString()));
+                diasSemanaIoT.add(Boolean.parseBoolean(isMiercoles.toString()));
+                diasSemanaIoT.add(Boolean.parseBoolean(isJueves.toString()));
+                diasSemanaIoT.add(Boolean.parseBoolean(isViernes.toString()));
+                diasSemanaIoT.add(Boolean.parseBoolean(isSabado.toString()));
+                for(int i = 0; i < model.getDiasSemana().size(); i++){
+                    if(model.getDiasSemana().get(i)){
+                        if(diasSemanaIoT.get(i)){
+                            cantidadPastillas+= model.getCantidad();
+                        }
+                        cantidadPastillasMaxima+=model.getCantidad();
+                    }
+                }
+                holder.mTxtCantidad.setText( cantidadPastillas + "/" + cantidadPastillasMaxima);
             }
             @Override
             public void onCancelled(DatabaseError error) {
