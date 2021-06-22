@@ -44,6 +44,8 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
     Spinner mSpinnerNom;
     @BindView(R.id.spinnerCantidad)
     Spinner mSpinnerCantidad;
+    @BindView(R.id.spinnerCantidadTotal)
+    Spinner mSpinnerCantidadTotal;
     @BindView(R.id.lyHoraToma)
     LinearLayout mLyHoraToma;
     @BindView(R.id.txtHoraToma)
@@ -78,12 +80,22 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Pastillero Virtual");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mTxtHoraToma.setText("00:00");
-        String[] cantidad = new String[20];
+        String[] cantidad = new String[5];
         for(int i = 0; i < cantidad.length; i++){
             cantidad[i] = (i + 1) + "";
         }
         ArrayAdapter<String> adapterCantidad = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,cantidad);
         mSpinnerCantidad.setAdapter(adapterCantidad);
+
+        String[] cantidadTotal = new String[40];
+        for(int i = 0; i < cantidadTotal.length; i++){
+            cantidadTotal[i] = (i + 1) + "";
+        }
+        ArrayAdapter<String> adapterCantidadTotal = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,cantidadTotal);
+        mSpinnerCantidadTotal.setAdapter(adapterCantidadTotal);
+
+
+
         service.lista_pastillas().get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -132,6 +144,7 @@ public class RegisterPastilleroActivity extends AppCompatActivity {
                             Map<String,Object> pastilla = new HashMap<>();
                             pastilla.put("nom",mSpinnerNom.getSelectedItem().toString());
                             pastilla.put("cantidad",Integer.parseInt(mSpinnerCantidad.getSelectedItem().toString()));
+                            pastilla.put("cantidadTotal",Integer.parseInt(mSpinnerCantidadTotal.getSelectedItem().toString()));
                             pastilla.put("hora",mTxtHoraToma.getText().toString());
                             pastilla.put("serie",bundle.getString("serie"));
                             ArrayList<Boolean> dias = new ArrayList<>();

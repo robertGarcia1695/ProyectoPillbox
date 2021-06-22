@@ -51,14 +51,14 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                Object isDomingo = dataSnapshot.child("Domingo").getValue();
                 Object isLunes = dataSnapshot.child("Lunes").getValue();
                 Object isMartes = dataSnapshot.child("Martes").getValue();
                 Object isMiercoles = dataSnapshot.child("Miercoles").getValue();
                 Object isJueves = dataSnapshot.child("Jueves").getValue();
                 Object isViernes = dataSnapshot.child("Viernes").getValue();
                 Object isSabado = dataSnapshot.child("Sabado").getValue();
-                Object isDomingo = dataSnapshot.child("Domingo").getValue();
-                if(model.getDiasSemana().get(0)) {
+                if(model.getDiasSemana().get(1)) {
                     if (isLunes.toString().equals("true")) {
                         holder.mTxtTomaLunes.setText("\uD83D\uDC8A");
                         holder.mTxtTomaLunes.setTextColor(Color.RED);
@@ -73,7 +73,7 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                     holder.mTxtTomaLunes.setTextColor(Color.BLACK);
                     holder.mTxtTomaLunes.setTextSize(24);
                 }
-                if(model.getDiasSemana().get(1)) {
+                if(model.getDiasSemana().get(2)) {
                     if (isMartes.toString().equals("true")) {
                         holder.mTxtTomaMartes.setText("\uD83D\uDC8A");
                         holder.mTxtTomaMartes.setTextColor(Color.RED);
@@ -88,7 +88,7 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                     holder.mTxtTomaMartes.setTextColor(Color.BLACK);
                     holder.mTxtTomaMartes.setTextSize(24);
                 }
-                if(model.getDiasSemana().get(2)) {
+                if(model.getDiasSemana().get(3)) {
                     if (isMiercoles.toString().equals("true")) {
                         holder.mTxtTomaMiercoles.setText("\uD83D\uDC8A");
                         holder.mTxtTomaMiercoles.setTextColor(Color.RED);
@@ -103,7 +103,7 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                     holder.mTxtTomaMiercoles.setTextColor(Color.BLACK);
                     holder.mTxtTomaMiercoles.setTextSize(24);
                 }
-                if(model.getDiasSemana().get(3)) {
+                if(model.getDiasSemana().get(4)) {
                     if (isJueves.toString().equals("true")) {
                         holder.mTxtTomaJueves.setText("\uD83D\uDC8A");
                         holder.mTxtTomaJueves.setTextColor(Color.RED);
@@ -118,7 +118,7 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                     holder.mTxtTomaJueves.setTextColor(Color.BLACK);
                     holder.mTxtTomaJueves.setTextSize(24);
                 }
-                if(model.getDiasSemana().get(4)) {
+                if(model.getDiasSemana().get(5)) {
                     if (isViernes.toString().equals("true")) {
                         holder.mTxtTomaViernes.setText("\uD83D\uDC8A");
                         holder.mTxtTomaViernes.setTextColor(Color.RED);
@@ -133,7 +133,7 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                     holder.mTxtTomaViernes.setTextColor(Color.BLACK);
                     holder.mTxtTomaViernes.setTextSize(24);
                 }
-                if(model.getDiasSemana().get(5)) {
+                if(model.getDiasSemana().get(6)) {
                     if (isSabado.toString().equals("true")) {
                         holder.mTxtTomaSabado.setText("\uD83D\uDC8A");
                         holder.mTxtTomaSabado.setTextColor(Color.RED);
@@ -148,7 +148,7 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                     holder.mTxtTomaSabado.setTextColor(Color.BLACK);
                     holder.mTxtTomaSabado.setTextSize(24);
                 }
-                if(model.getDiasSemana().get(6)) {
+                if(model.getDiasSemana().get(0)) {
                     if (isDomingo.toString().equals("true")) {
                         holder.mTxtTomaDomingo.setText("\uD83D\uDC8A");
                         holder.mTxtTomaDomingo.setTextColor(Color.RED);
@@ -165,6 +165,7 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                 }
                 int cantidadPastillas = 0;
                 int cantidadPastillasMaxima = 0;
+                int restaTotalPastilla = model.getCantidadTotal();
                 ArrayList<Boolean> diasSemanaIoT = new ArrayList<>();
                 diasSemanaIoT.add(Boolean.parseBoolean(isDomingo.toString()));
                 diasSemanaIoT.add(Boolean.parseBoolean(isLunes.toString()));
@@ -178,10 +179,13 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
                         if(diasSemanaIoT.get(i)){
                             cantidadPastillas+= model.getCantidad();
                         }
+                        if(!diasSemanaIoT.get(i)){
+                            restaTotalPastilla-= model.getCantidad();
+                        }
                         cantidadPastillasMaxima+=model.getCantidad();
                     }
                 }
-                holder.mTxtCantidad.setText( cantidadPastillas + "/" + cantidadPastillasMaxima);
+                holder.mTxtCantidad.setText( cantidadPastillas + "/" + cantidadPastillasMaxima + " - " + restaTotalPastilla + "/" + model.getCantidadTotal());
             }
             @Override
             public void onCancelled(DatabaseError error) {

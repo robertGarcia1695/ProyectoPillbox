@@ -48,13 +48,13 @@ public class PillCheckActivity extends AppCompatActivity {
                 Object isSabado = dataSnapshot.child("Sabado").getValue();
                 Object isDomingo = dataSnapshot.child("Domingo").getValue();
                 ArrayList<Boolean> diasSemanaIoT = new ArrayList<>();
+                diasSemanaIoT.add(Boolean.parseBoolean(isDomingo.toString()));
                 diasSemanaIoT.add(Boolean.parseBoolean(isLunes.toString()));
                 diasSemanaIoT.add(Boolean.parseBoolean(isMartes.toString()));
                 diasSemanaIoT.add(Boolean.parseBoolean(isMiercoles.toString()));
                 diasSemanaIoT.add(Boolean.parseBoolean(isJueves.toString()));
                 diasSemanaIoT.add(Boolean.parseBoolean(isViernes.toString()));
                 diasSemanaIoT.add(Boolean.parseBoolean(isSabado.toString()));
-                diasSemanaIoT.add(Boolean.parseBoolean(isDomingo.toString()));
                 if(!diasSemanaIoT.get(0) && !diasSemanaIoT.get(1) && !diasSemanaIoT.get(2) && !diasSemanaIoT.get(3) &&
                         !diasSemanaIoT.get(4) && !diasSemanaIoT.get(5) && !diasSemanaIoT.get(6)
                         /*&& (Calendar.getInstance().getTime().getMinutes() == 5

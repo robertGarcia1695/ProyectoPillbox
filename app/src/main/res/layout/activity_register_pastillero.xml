@@ -70,23 +70,26 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-                <!--<com.google.android.material.textfield.TextInputLayout
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtCantidad"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cantidad x día"
-                        android:inputType="number"
-                        android:maxLength="1"
-                        android:digits="123456789">
+                        android:text="Cantidad de toma por día:"/>
+                    <Spinner
+                        android:id="@+id/spinnerCantidadTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>-->
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

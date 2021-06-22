@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Pastilla {
     private String nom;
     private Integer cantidad;
+    private Integer cantidadTotal;
     private String hora;
     private ArrayList<Boolean> diasSemana;
 
@@ -41,4 +42,11 @@ public class Pastilla {
         this.hora = hora;
     }
 
+    public Integer getCantidadTotal() {
+        return cantidadTotal;
+    }
+
+    public void setCantidadTotal(Integer cantidadTotal) {
+        this.cantidadTotal = cantidadTotal;
+    }
 }
