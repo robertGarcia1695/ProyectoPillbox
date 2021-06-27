@@ -179,7 +179,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="PARENTESCO"
+                    android:hint="Parentesco"
                     android:inputType="textPassword">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -220,14 +220,14 @@
             android:layout_width="344dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="Avisarte de nuevos productos " />
+            android:text="Prefiero no recibir publicidad" />
 
         <CheckBox
             android:id="@+id/checkInfo"
             android:layout_width="346dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="Permitenos utilizar tu información" />
+            android:text="Compartir mis datos datos Personales" />
 
         <LinearLayout
             android:layout_width="match_parent"

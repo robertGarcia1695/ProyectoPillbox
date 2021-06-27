@@ -108,7 +108,7 @@ public class PerfilActivity extends AppCompatActivity {
             mTxtEdad.setText(usuario.getEdad().toString());
             mLblTipoUsuario.setText("Parentesco: ");
             mTxtDesTipUsuario.setText(usuario.getParentesco());
-            mImgPerfil.setImageDrawable(getResources().getDrawable(R.drawable.apoyo));
+            mImgPerfil.setImageDrawable(getResources().getDrawable(R.drawable.apoyo234));
             mBtnGoToActualizarPerfil.setOnClickListener(v ->  {
                 Intent intent = new Intent(PerfilActivity.this, ActualizarPerfilActivity.class)
                         .putExtra("id",id);

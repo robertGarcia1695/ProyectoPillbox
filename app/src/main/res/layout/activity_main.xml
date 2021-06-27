@@ -14,52 +14,37 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="300dp"
-            android:src="@drawable/princiapl"
-            android:layout_marginTop="50dp"
+
+            android:layout_width="350dp"
+            android:layout_height="400dp"
+            android:src="@drawable/logo22"
+            android:layout_marginTop="100dp"
             android:layout_gravity="center"/>
 
-        <TextView
+
+
+        <Button
+            android:id="@+id/btnGoToLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:text="Smart Pill box Asistente virtual"
-            android:textAlignment="center"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/colorBlueLight"
+            android:text="LOGIN"
+            android:layout_marginTop="50dp"
             android:textColor="@color/colorWhite"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_marginRight="30dp"/>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/btnGoToRegistrarse"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="bottom"
-            android:layout_margin="20dp"
-            >
-
-            <Button
-                android:id="@+id/btnGoToLogin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/colorBlueLight"
-                android:text="LOG IN"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/btnGoToRegistrarse"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/colorWhite"
-                android:text="REGISTRARSE" />
-
-        </LinearLayout>
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/colorWhite"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:text="REGISTRARSE" />
 
     </LinearLayout>
 

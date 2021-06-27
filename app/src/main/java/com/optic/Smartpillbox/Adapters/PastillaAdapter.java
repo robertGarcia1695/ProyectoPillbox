@@ -196,8 +196,8 @@ public class PastillaAdapter extends FirestoreRecyclerAdapter<Pastilla, Pastilla
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 
-                builder.setTitle("Confirm");
-                builder.setMessage("¿Deseas eliminar esta alarma?");
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Deseas eliminar este registros?");
                 builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
