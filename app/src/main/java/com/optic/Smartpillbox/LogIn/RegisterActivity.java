@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,6 +37,7 @@ import com.optic.Smartpillbox.Services.CheckNetworkStatus;
 import com.optic.Smartpillbox.Services.InternetServiceActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputEditText mTxtEdad;
     @BindView(R.id.spinnerEnfermedad)
     Spinner mSpinnerEnfermedad;
-    @BindView(R.id.txtParentesco)
-    TextInputEditText mTxtParentesco;
+    /*@BindView(R.id.txtParentesco)
+    TextInputEditText mTxtParentesco;*/
     @BindView(R.id.spinnerSexo)
     Spinner mSpinnerSexo;
     @BindView(R.id.checkSpan)
@@ -72,8 +76,13 @@ public class RegisterActivity extends AppCompatActivity {
     LinearLayout mLyEnfermedad;
     @BindView(R.id.lyParentesco)
     LinearLayout mLyParentesco;
+    @BindView(R.id.btnFecNac)
+    Button mBtnFecNac;
+    @BindView(R.id.txtDni)
+    TextInputEditText mTxtDni;
     private FireStoreService service;
     private CheckNetworkStatus networkStatus;
+    DatePickerDialog datePickerDialog;
 
 
     @Override
@@ -101,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
+                    setDatePicker();
                     List<Enfermedad> enfermedads = new ArrayList<>();
                     for(DocumentSnapshot e: task.getResult().getDocuments()){
                         enfermedads.add(e.toObject(Enfermedad.class));
@@ -146,7 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
                 usuario.setEmail(mTxtEmail.getText().toString());
                 usuario.setPassword(mTxtPassword.getText().toString());
                 try {
-                    usuario.setEdad(Integer.parseInt(mTxtEdad.getText().toString()));
+                    usuario.setEdad(mTxtEdad.getText().toString());
                 }catch (NumberFormatException n){
                     usuario.setEdad(null);
                 }
@@ -154,6 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
                 usuario.setSexo(mSpinnerSexo.getSelectedItem().toString());
                 usuario.setInfo(mCheckInfo.isChecked());
                 usuario.setSpan(mCheckSpan.isChecked());
+                usuario.setDni(mTxtDni.getText().toString());
 
                 Map<String,Object> usuarioMap = new HashMap();
                 usuarioMap.put("nom",usuario.getNom());
@@ -162,6 +173,7 @@ public class RegisterActivity extends AppCompatActivity {
                 usuarioMap.put("edad",usuario.getEdad());
                 usuarioMap.put("enfermedad", usuario.getEnfermedad());
                 usuarioMap.put("sexo",usuario.getSexo());
+                usuarioMap.put("dni", usuario.getDni());
                 usuarioMap.put("isInfo",usuario.getInfo());
                 usuarioMap.put("isSpan",usuario.getSpan());
                 //Toast.makeText(this,usuarioMap.toString(),Toast.LENGTH_LONG).show();
@@ -177,14 +189,15 @@ public class RegisterActivity extends AppCompatActivity {
                 usuarioApoyo.setEmail(mTxtEmail.getText().toString());
                 usuarioApoyo.setPassword(mTxtPassword.getText().toString());
                 try {
-                    usuarioApoyo.setEdad(Integer.parseInt(mTxtEdad.getText().toString()));
+                    usuarioApoyo.setEdad(mTxtEdad.getText().toString());
                 }catch (NumberFormatException n){
                     usuarioApoyo.setEdad(null);
                 }
-                usuarioApoyo.setParentesco(mTxtParentesco.getText().toString());
+                //usuarioApoyo.setParentesco(mTxtParentesco.getText().toString());
                 usuarioApoyo.setSexo(mSpinnerSexo.getSelectedItem().toString());
                 usuarioApoyo.setInfo(mCheckInfo.isChecked());
                 usuarioApoyo.setSpan(mCheckSpan.isChecked());
+                usuarioApoyo.setDni(mTxtDni.getText().toString());
 
                 Map<String,Object> usuarioApoyoMap = new HashMap();
                 usuarioApoyoMap.put("nom",usuarioApoyo.getNom());
@@ -195,6 +208,7 @@ public class RegisterActivity extends AppCompatActivity {
                 usuarioApoyoMap.put("sexo",usuarioApoyo.getSexo());
                 usuarioApoyoMap.put("isInfo",usuarioApoyo.getInfo());
                 usuarioApoyoMap.put("isSpan",usuarioApoyo.getSpan());
+                usuarioApoyoMap.put("dni", usuarioApoyo.getDni());
                 //Toast.makeText(this,usuarioApoyoMap.toString(),Toast.LENGTH_LONG).show();
                 //Lo que sigue es para la base de datos ....
                 /*if(validarDatos(tipoUsuario)) {
@@ -213,6 +227,33 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
         finishAffinity();
     }
+    public void setDatePicker(){
+        mBtnFecNac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calender class's instance and get current date , month and year from calender
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR); // current year
+                int mMonth = c.get(Calendar.MONTH); // current month
+                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                // date picker dialog
+                datePickerDialog = new DatePickerDialog(RegisterActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                mTxtEdad.setText(dayOfMonth + "/"
+                                        + (monthOfYear + 1) + "/" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+    }
+
     public void createUser(Map<String, Object> userMap){
         //Toast.makeText(RegisterActivity.this,user.get("email").toString() + " " + user.get("password").toString(),Toast.LENGTH_LONG).show();
         service.mAuth.createUserWithEmailAndPassword(userMap.get("email").toString(), userMap.get("password").toString())
@@ -247,7 +288,7 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
     public boolean validarDatos(char tipoUsuario){
-        Boolean[] validacion = new Boolean[5];
+        Boolean[] validacion = new Boolean[6];
         boolean confirmacion = false;
         for(int i = 0; i < validacion.length; i++){
             validacion[i] = false;
@@ -288,13 +329,20 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 break;
             case 'a':
+                validacion[4] = true;
+                /*
                 if(mTxtParentesco.getText().toString().equals("")){
                     mTxtParentesco.setError("Debe indicar a su parentesco.");
                 }else{
                     validacion[4] = true;
-                }
+                }*/
                 break;
             default: break;
+        }
+        if(mTxtDni.getText().toString().equals("")){
+            mTxtDni.setError("Debe ingresar su DNI.");
+        }else{
+            validacion[5] = true;
         }
         for(int i = 0; i < validacion.length;i++){
             if(validacion[i] == true){

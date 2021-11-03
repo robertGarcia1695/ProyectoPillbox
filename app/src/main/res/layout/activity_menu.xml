@@ -21,7 +21,7 @@ tools:context=".Modulos.MenuActivity">
             <ImageView
                 android:layout_width="280dp"
                 android:layout_height="280dp"
-                android:src="@drawable/png_logos12"
+                android:src="@drawable/doc4"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"/>
 
@@ -51,7 +51,26 @@ tools:context=".Modulos.MenuActivity">
                 android:text="Pastillero Virtual" />
 
 
-
+            <Button
+                android:id="@+id/btnGoToSginosVitales"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Registro de Signos Vitateles y sintomas " />
+            <Button
+                android:id="@+id/btnGoToReporteCovid"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Reporte " />
             <Button
                 android:id="@+id/btnSignout"
                 android:layout_width="match_parent"

@@ -8,44 +8,49 @@
     android:background="@color/colorred"
     tools:context=".Modulos.MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <ImageView
-
-            android:layout_width="350dp"
-            android:layout_height="400dp"
-            android:src="@drawable/logo22"
-            android:layout_marginTop="100dp"
-            android:layout_gravity="center"/>
-
-
-
-        <Button
-            android:id="@+id/btnGoToLogin"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="@color/colorBlueLight"
-            android:text="LOGIN"
-            android:layout_marginTop="50dp"
-            android:textColor="@color/colorWhite"
-            android:layout_marginRight="30dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/btnGoToRegistrarse"
-            android:layout_width="match_parent"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="@color/colorWhite"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
-            android:text="REGISTRARSE" />
+            <ImageView
 
-    </LinearLayout>
+                android:layout_width="350dp"
+                android:layout_height="400dp"
+                android:src="@drawable/doc3"
+                android:layout_marginTop="100dp"
+                android:layout_gravity="center"/>
+
+
+
+            <Button
+                android:id="@+id/btnGoToLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorBlueLight"
+                android:text="LOGIN"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/colorWhite"
+                android:layout_marginRight="30dp"/>
+
+            <Button
+                android:id="@+id/btnGoToRegistrarse"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:text="REGISTRARSE" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

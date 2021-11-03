@@ -43,6 +43,10 @@ public class MenuActivity extends AppCompatActivity {
     Button mBtnGoToPerfil;
     @BindView(R.id.btnGoToPastillero)
     Button mBtnGoToPastillero;
+    @BindView(R.id.btnGoToSginosVitales)
+    Button mBtnGoToSginosVitales;
+    @BindView(R.id.btnGoToReporteCovid)
+    Button mBtnGoToReporteCovid;
 
     private FireStoreService service;
     private CheckNetworkStatus networkStatus;
@@ -109,6 +113,16 @@ public class MenuActivity extends AppCompatActivity {
                             mBtnGoToPastillero.setOnClickListener(v -> {
                                 Intent intent = new Intent(MenuActivity.this,ListPastilleroActivity.class)
                                         .putExtra("serie",userProfile.get("serie").toString());
+                                startActivity(intent);
+                            });
+                            mBtnGoToSginosVitales.setOnClickListener(v -> {
+                                Intent intent = new Intent(MenuActivity.this, FormularioActivity.class)
+                                        .putExtra("serie", userProfile.get("serie").toString());
+                                startActivity(intent);
+                            });
+                            mBtnGoToReporteCovid.setOnClickListener(v -> {
+                                Intent intent = new Intent(MenuActivity.this, ReportesCovidActivity.class)
+                                        .putExtra("serie", userProfile.get("serie").toString());
                                 startActivity(intent);
                             });
                             //Inicializa el servicio

@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Services.PillCheckActivity"></activity>
+        <activity android:name=".Modulos.DetalleReporteCovidActivity"></activity>
+        <activity android:name=".Modulos.ReportesCovidActivity" />
+        <activity android:name=".Services.PillCheckActivity" />
         <activity android:name=".Services.AlarmAlertActivity" />
 
         <service android:name=".Services.GeneralService" />
@@ -29,6 +31,7 @@
         <activity android:name=".Modulos.MenuActivity" />
         <activity android:name=".LogIn.CredencialesActivity" />
         <activity android:name=".Modulos.ApoyoActivity" />
+        <activity android:name=".Modulos.FormularioActivity" />
         <activity
             android:name=".Modulos.RegisterUapoyoActivity"
             android:label="@string/title_activity_register_uapoyo"

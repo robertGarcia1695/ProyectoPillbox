@@ -7,12 +7,30 @@ public class UsuarioApoyo {
     private String email;
     private String password;
     @Nullable
-    private Integer edad;
+    private String edad;
     private String serie;
     private String parentesco;
     private String sexo;
     private Boolean isSpan;
     private Boolean isInfo;
+    private String dni;
+
+    @Nullable
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(@Nullable String edad) {
+        this.edad = edad;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
 
     public Boolean getSpan() {
         return isSpan;
@@ -54,13 +72,6 @@ public class UsuarioApoyo {
         this.password = password;
     }
 
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public void setEdad(Integer edad) {
-        this.edad = edad;
-    }
 
     public String getSerie() {
         return serie;

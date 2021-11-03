@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,8 +19,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
+import com.optic.Smartpillbox.LogIn.RegisterActivity;
 import com.optic.Smartpillbox.R;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +40,10 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
     Button mBtnActualizarPerfil;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.btnFecNac)
+    Button mBtnFecNac;
 
+    DatePickerDialog datePickerDialog;
     private FireStoreService service;
 
     @Override
@@ -48,6 +56,7 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Actualizar Perfil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
+        setDatePicker();
         String[] sexo = new String[3];
         sexo[0] = "Masculino";
         sexo[1] = "Femenino";
@@ -59,7 +68,7 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     mSpinnerSexo.setAdapter(adapter);
                     mTxtNom.setText(task.getResult().getString("nom"));
-                    mTxtEdad.setText(task.getResult().getLong("edad").toString());
+                    mTxtEdad.setText(task.getResult().getString("edad").toString());
                     switch (task.getResult().getString("sexo")){
                         case "Masculino": mSpinnerSexo.setSelection(0);break;
                         case "Femenino": mSpinnerSexo.setSelection(1);break;
@@ -81,7 +90,7 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
     public void ActualizarInformacion(String id){
         Map<String,Object> usuarioMap = new HashMap<>();
         usuarioMap.put("nom",mTxtNom.getText().toString());
-        usuarioMap.put("edad",Integer.parseInt(mTxtEdad.getText().toString()));
+        usuarioMap.put("edad",mTxtEdad.getText().toString());
         usuarioMap.put("sexo", mSpinnerSexo.getSelectedItem().toString());
         service.perfil_usuarios().document(id).update(usuarioMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -90,6 +99,32 @@ public class ActualizarPerfilActivity extends AppCompatActivity {
                     startActivity(new Intent(ActualizarPerfilActivity.this,MenuActivity.class));
                     finish();
                 }
+            }
+        });
+    }
+    public void setDatePicker(){
+        mBtnFecNac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calender class's instance and get current date , month and year from calender
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR); // current year
+                int mMonth = c.get(Calendar.MONTH); // current month
+                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                // date picker dialog
+                datePickerDialog = new DatePickerDialog(ActualizarPerfilActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                mTxtEdad.setText(dayOfMonth + "/"
+                                        + (monthOfYear + 1) + "/" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
             }
         });
     }

@@ -146,6 +146,40 @@
                 android:orientation="horizontal"
                 android:layout_margin="10dp">
 
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:text="+"
+                    android:id="@+id/btnFecNac"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="@color/colorred"
+                    android:src="@drawable/icon_password" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdad"
+                        android:enabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Fecha de Nacimiento">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -158,13 +192,13 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtEdad"
+                        android:id="@+id/txtDni"
                         android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Edad"
+                        android:hint="DNI"
                         android:digits="0123456789"
-                        android:maxLength="3">
+                        android:maxLength="8">
 
                     </com.google.android.material.textfield.TextInputEditText>
 
@@ -208,25 +242,13 @@
                 android:id="@+id/lyParentesco"
                 android:layout_margin="10dp">
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/icon_password" />
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtParentesco"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Parentesco"
-                        android:inputType="text">
-
-                    </com.google.android.material.textfield.TextInputEditText>
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>

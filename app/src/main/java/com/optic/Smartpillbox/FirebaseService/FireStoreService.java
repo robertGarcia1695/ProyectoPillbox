@@ -42,9 +42,12 @@ public class FireStoreService {
         CollectionReference dato = db.collection("PASTILLERO_VIRTUAL");
         return dato;
     }
+    public CollectionReference reporte_covid(){
+        CollectionReference dato = db.collection("REPORTE_COVID");
+        return dato;
+    }
     public DatabaseReference pastillero_rtdb(){
         DatabaseReference dato = rtdb.getReference("Pastillero");
         return dato;
     }
-
 }
