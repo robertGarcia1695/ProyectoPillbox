@@ -25,6 +25,8 @@ public class DetalleReporteCovidActivity extends AppCompatActivity {
     TextView mTxtPeso;
     @BindView(R.id.txtPresion)
     TextView mTxtPresion;
+    @BindView(R.id.txtPresion2)
+    TextView mTxtPresion2;
     @BindView(R.id.txtTemp)
     TextView mTxtTemp;
 
@@ -62,6 +64,7 @@ public class DetalleReporteCovidActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Reporte del " + json.getString("horaReg"));
             mTxtPeso.append(" " + json.getString("peso"));
             mTxtPresion.append(" " + json.getString("presion"));
+            mTxtPresion2.append(" " + json.getString("presion2"));
             mTxtTemp.append(" " + json.getString("temp"));
             mTxtOx1.append(" " + json.getString("ox1"));
             mTxtOx2.append(" " + json.getString("ox2"));

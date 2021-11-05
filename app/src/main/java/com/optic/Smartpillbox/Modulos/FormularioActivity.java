@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.optic.Smartpillbox.FirebaseService.FireStoreService;
+import com.optic.Smartpillbox.Model.ReportesCovid;
 import com.optic.Smartpillbox.R;
 
 import java.text.SimpleDateFormat;
@@ -66,6 +67,8 @@ public class FormularioActivity extends AppCompatActivity {
     TextInputEditText mTxtOx1;
     @BindView(R.id.txtOx2)
     TextInputEditText mTxtOx2;
+    @BindView(R.id.txtPresion2)
+    TextInputEditText mTxtPresion2;
 
     private FireStoreService service;
 
@@ -83,21 +86,41 @@ public class FormularioActivity extends AppCompatActivity {
             if(validarCampos()){
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 Date date = new Date();
+                ReportesCovid reportesCovid = new ReportesCovid();
+                reportesCovid.setChk1(mChk1.isChecked());
+                reportesCovid.setChk2(mChk2.isChecked());
+                reportesCovid.setChk3(mChk3.isChecked());
+                reportesCovid.setChk4(mChk4.isChecked());
+                reportesCovid.setChk5(mChk5.isChecked());
+                reportesCovid.setChk6(mChk6.isChecked());
+                reportesCovid.setChk7(mChk7.isChecked());
+                reportesCovid.setTemp(mTxtTemperatura.getText().toString());
+                reportesCovid.setPeso(mTxtPeso.getText().toString());
+                reportesCovid.setPresion(mTxtPresion.getText().toString());
+                reportesCovid.setOx1(mTxtOx1.getText().toString());
+                reportesCovid.setOx2(mTxtOx2.getText().toString());
+                reportesCovid.setPresion2(mTxtPresion2.getText().toString());
+                reportesCovid.setSerie(bundle.getString("serie"));
+                reportesCovid.setHoraReg(formatter.format(date));
+
+
                 Map<String, Object> datos = new HashMap<>();
-                datos.put("temp", mTxtTemperatura.getText().toString());
-                datos.put("peso", mTxtPeso.getText().toString());
-                datos.put("presion", mTxtPeso.getText().toString());
-                datos.put("ox1", mTxtOx1.getText().toString());
-                datos.put("ox2", mTxtOx2.getText().toString());
-                datos.put("chk1", mChk1.isChecked());
-                datos.put("chk2", mChk2.isChecked());
-                datos.put("chk3", mChk3.isChecked());
-                datos.put("chk4", mChk4.isChecked());
-                datos.put("chk5", mChk5.isChecked());
-                datos.put("chk6", mChk6.isChecked());
-                datos.put("chk7", mChk7.isChecked());
-                datos.put("serie", bundle.getString("serie"));
-                datos.put("horaReg", formatter.format(date));
+                datos.put("temp", reportesCovid.getTemp());
+                datos.put("peso", reportesCovid.getPeso());
+                datos.put("presion", reportesCovid.getPresion());
+                datos.put("ox1", reportesCovid.getOx1());
+                datos.put("ox2", reportesCovid.getOx2());
+                datos.put("presion2", reportesCovid.getPresion2());
+
+                datos.put("chk1", reportesCovid.getChk1());
+                datos.put("chk2", reportesCovid.getChk2());
+                datos.put("chk3", reportesCovid.getChk3());
+                datos.put("chk4", reportesCovid.getChk4());
+                datos.put("chk5", reportesCovid.getChk5());
+                datos.put("chk6", reportesCovid.getChk6());
+                datos.put("chk7", reportesCovid.getChk7());
+                datos.put("serie", reportesCovid.getSerie());
+                datos.put("horaReg", reportesCovid.getHoraReg());
                 service.reporte_covid().add(datos).addOnCompleteListener(task ->{
                     if(task.isSuccessful()){
                         Toast.makeText(FormularioActivity.this,"Se ha registrado satisfactoriamente.",Toast.LENGTH_SHORT).show();

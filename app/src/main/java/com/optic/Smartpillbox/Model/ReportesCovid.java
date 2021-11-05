@@ -14,7 +14,16 @@ public class ReportesCovid {
     private String temp;
     private String ox1;
     private String ox2;
+    private String presion2;
     private String serie;
+
+    public String getPresion2() {
+        return presion2;
+    }
+
+    public void setPresion2(String presion2) {
+        this.presion2 = presion2;
+    }
 
     public String getSerie() {
         return serie;

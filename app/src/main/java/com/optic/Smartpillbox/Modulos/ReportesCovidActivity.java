@@ -39,7 +39,7 @@ public class ReportesCovidActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         service = new FireStoreService();
 
-        Query query = service.reporte_covid().whereEqualTo("serie",bundle.getString("serie"));
+        Query query = service.reporte_covid().whereEqualTo("serie",bundle.getString("serie")).orderBy("horaReg", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<ReportesCovid> options = new FirestoreRecyclerOptions.Builder<ReportesCovid>()
                 .setQuery(query, ReportesCovid.class).build();
         adapter = new ReportesCovidAdapter(options);

@@ -54,8 +54,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Presión: "
+                            android:text="Presión 1: "
                             android:id="@+id/txtPresion"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Presión 2: "
+                            android:id="@+id/txtPresion2"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
